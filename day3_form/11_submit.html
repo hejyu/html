@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>사용자가 물품을 주문합니다. 주문 `품목`과 `수량`을 입력합니다.</p>
+    <form action="success.html">
+        <input type="text" name="pcode" placeholder="상품코드를 입력하세요">
+        <input type="number" name="quantity" placeholder="주문수량을 입력하세요" value="1">
+        <button>주문</button>
+    </form>
+    <!-- 
+        http://192.168.181.18:3000/day3_form/success.html?pcode=&quantity=1
+
+        쿼리 스트링(입력 파라미터) 변수 입력값을 받을 서버의 주소는 ? 앞의 주소입니다.
+     -->
+</body>
+</html>
+
+
+<!-- jsp  
+    form 태그의 method 속성값을 post(저장)로 하면 
+        사용자가 입력한 값이 url 에 표시안됨.
+        method 속성 기본값은 get
+        
+    form 태그의 주요 속성
+        (1) action
+        (2) method
+-->

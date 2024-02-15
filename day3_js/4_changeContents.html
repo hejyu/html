@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- head 태그에서 스크립트를 사용시 요소에 접근할때 제한이 생기므로 사용할 때 주의가 필요함 -->
+</head>
+<body>
+    <h2 id="title">JS로 h2 요소의 컨텐츠를 변경합니다.</h2>
+    <button onclick="change()">실행하기</button>
+
+    <script>
+        const title = document.getElementById('title')
+        const change = function() {
+            // value 속성은 입력 요소에만 사용합니다.
+            // innerHTML 은 시작태그와 종료태그 사이의 내용을 저장합니다.
+            title.innerHTML = "환영합니다. Welcome!!!"
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {width: 800px;}
+    /* 테이블 크기 800픽셀에 대한 백분율로 너비를 설정합니다 */
+    th { width: 13%; background-color: tomato; color: white;}
+    td {width: 10%;}
+    th, 
+    td {
+        border: 1px solid tomato; padding: 7px 12px; text-align: center;
+    }
+</style>
+<body>
+    <h3>오늘의 스케쥴</h3>
+    <!-- 자바스크립트 배열에 저장된 값으로 시간표를 만들어 봅니다 -->
+    <table>
+        <tr id="time">
+        
+        </tr>
+
+        <tr id="todo">
+        
+        </tr>
+    </table>
+
+    <hr>
+
+    <table>
+        <thead>
+            <th>TIME</th>
+            <th>TODO</th>
+        </thead>
+        <tbody id="vertical">
+
+        </tbody>
+    </table>
+
+
+    <script>
+        const time = ['09:00','11:00','12:30','14:00','16:45']
+        const todo = ['수업','과제','점심식사','주간회의','자료조사']
+        
+        
+        const fn_make_table = function() {
+            // dom 메소드 createElement, appendChild 이용해서 완성하세요
+            let tr = document.querySelector('#time')
+            let td = null
+            let th = document.createElement('th')
+            th.innerHTML = 'TIME'
+            tr.appendChild(th)
+
+            // 첫번째 행에 들어갈 요소를 만듭니다
+            time.forEach((val) => {
+                td = document.createElement('td')
+                td.innerHTML = val
+                tr.appendChild(td)
+            });
+
+            // 두번째 행에 들어갈 요소를 만듭니다
+            tr = document.querySelector('#todo')
+            td = null
+            th = document.createElement('th')
+            th.innerHTML = 'TODO'
+            tr.appendChild(th)
+
+            // 두번째 행에 들어갈 문자열을 만듭니다
+            todo.forEach((val) => {
+                td = document.createElement('td')
+                td.innerHTML = val
+                tr.appendChild(td)
+            });
+
+        }
+
+        const fn_make_vertical_table = function() {
+            // let tbody = document.querySelector('#vertical')
+            let tbody = document.querySelector('tbody#vertical')
+            // table 만들 때 tbody 는 브라우저가 자동으로 추가합니다(주의)
+            
+            let tr = null
+            let td = null
+
+            
+            for (let i = 0; i < time.length ; i++) {
+                tr = document.createElement('tr')
+
+                td = document.createElement('td')
+                td.innerHTML = time[i]
+                tr.appendChild(td)
+
+                td = document.createElement('td')
+                td.innerHTML = todo[i]
+                tr.appendChild(td)
+
+                tbody.appendChild(tr)
+            }
+ 
+        }
+
+        //***********************함수 호출**********************************
+        fn_make_table()
+        fn_make_vertical_table()
+    </script>
+</body>
+</html>

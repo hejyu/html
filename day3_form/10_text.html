@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        ******************************************************************** 
+        form 은 사용자 입력 양식을 만듬.
+        사용자가 입력한 값을 구분하기 위한 식별자 속성 : `name`  
+        사용자 입력값 구분 속성(화면에 표시되는 방법) : type
+        사용자가 입력한 값 : value
+        서버로 전송되는 url 에 표시되는 ?속성이름=값 형식입니다.
+        ******************************************************************** 
+     -->
+   <form action="success.html">
+        <input type="text" name="search">
+
+        <!-- button 태그가 form 안에서 type 속성이 생략된 경우, submit(서버로 데이터를 보내는 동작을 수행함) -->
+        <button>전송</button>
+
+        <!-- button 태그 type 속성이 button 이면 자바스크립트 명령을 실행합니다 -->
+        <button type="button">검색</button>
+
+        <!-- 오래된 형식 -->
+        <input type="submit" value="테스트">
+   </form> 
+</body>
+</html>
+
+
+<!-- 실행 결과 설명 :
+    입력요소에 아무 문자열 입력 후 전송 버튼 클릭하면
+    success.html 로 페이지가 이동합니다
+    실행 결과 url :
+    /success.html?
+    입력 문자열이 한글이면 url에서 utf-8인코딩된 값으로 전달됨.
+    %EA 1바이트 16진수값
+
+    `action` 속성값은 데이터를 전달받을 url(백엔드 주소입니다)
+    html 파일은 정적페이지로 데이터를 처리하는 기능이 없음.
+    웹애플리케이션 서버단에서 데이터를 처리할 수 있는 jsp로 바뀌어야 함.
+    
+-->
+
+<!-- button 태그 2가지 경우
+    (1) form 태그 안에 사용 여부
+    (2) type 속성이 submit 일때와 button 일 때 동작 구분
+
+-->

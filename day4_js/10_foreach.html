@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Java Script의 배열 forEach</h3>
+    <ul>
+        <li> for문 동작을 하는 메소드입니다 </li>
+        <li> 메소드의 인자는 함수입니다. : 콜백함수  </li>
+        <li> 콜백함수의 인자는 순서(배열요소,인덱스, 배열) </li>
+        <li> 콜백함수의 인자는 필요데 따라 1개 또는 2개만 사용할수도 있습니다 </li>
+        <li> 콜백함수로 화살표 함수 형식을 많이 사용합니다(숙지필수)</li>
+    </ul>
+    <pre style="font-size : 1rem; font-family: inherit;">
+    <script>
+        //document.write 또는 wirteln 메소드 : 웹문서에 문자열 출력
+        const names = [];        // 내용이 없는 배열 선언
+        // arr1 = ['a', 'b'];   // 오류 : const 입니다. 배열 자체를 바꿀 수 없습니다.
+        names.push('사나');      // const 배열이나 배열 요소를 변경 할 수 있습니다.
+        names.push('쯔위');
+        names.push('모모');
+        names.push('다현');
+        names.push('나연');
+
+
+
+
+
+
+        //forEach(함수)가 더 많이 쓰입니다.-메소드의 인자가 함수다 =콜백함수
+        names.forEach(function (item, index, array) {
+            //forEach()의 인자 순서는 정해져있다 무조건 value string  number index number array(string | number)
+            // 변수명은 상관없다item, index, array 대신 ele, i,arr로 써도 ㄱㅊ 순서가 정해진것뿐
+            document.writeln("item = ", item)
+            document.writeln("index = ", index)
+            document.writeln("array = ", array)
+
+            document.write('<hr style="border:0.2px dashed gray">')
+
+        })
+        document.write('<hr>')
+        names.forEach(function (item, index) {
+            //forEach()의 인자 순서는 정해져있다 무조건 value string  number index number array(string | number)
+            // 변수명은 상관없다item, index, array 대신 ele, i,arr로 써도 ㄱㅊ 순서가 정해진것뿐
+            document.writeln("item = ", item)
+            document.writeln("index = ", index)
+            document.write('<hr style="border:0.2px dashed blue">')
+
+        })
+        document.write('<hr>')
+        names.forEach(function (item) {
+            // forEach()의 인자 순서는 정해져있다 무조건 value string  number index number array(string | number)
+            // 변수명은 상관없다item, index, array 대신 ele, i,arr로 써도 ㄱㅊ 순서가 정해진것뿐
+            document.writeln("item = ", item)
+            document.write('<hr style="border:0.2px dashed red">')
+
+        })
+        //위를 화살표 함수로
+        document.write('<hr>')
+        names.forEach((item) => {
+            //forEach()의 인자 순서는 정해져있다 무조건 value string  number index number array(string | number)
+            // 변수명은 상관없다item, index, array 대신 ele, i,arr로 써도 ㄱㅊ 순서가 정해진것뿐
+            document.writeln("item = ", item)
+            document.write('<hr style="border:0.2px dashed green">')
+
+        })
+        document.write('<hr>')
+        //화살표 함수를 변수로 선언, 함수 실행코드 1줄일때 {}생략
+        const printItem = (item) => document.write('item : ', item)
+        names.forEach(printItem)
+
+
+
+
+    </script>
+    </pre>
+</body>
+
+</html>

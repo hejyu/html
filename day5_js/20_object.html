@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>자바스크립트 : 오브젝트</h3>
+    <ul>
+        <li>- 자바스크립트 객체 생성 : {} </li>
+        <li>- 자바스크립트 객체 구성 요소 - 속성, 메소드 - 미리 클래스로 정의  </li>
+        <li>- 자바스크립트는 구성 요소를 미리 정의하지 않는 프로토 타입 기반 객체입니다</li>
+        <li>    ㄴ> 그래서 구성요소인 속성과 메소드의 추가를 쉽게 할 수 있습니다 </li>
+    </ul>
+
+    <pre>
+        <script>
+            // 객체 리터럴을 변수 sana에 저장 -> sana 객체의 이름 
+            const sana = {name: '사나', age: 23, address: '경기'}    
+
+            document.writeln('sana 이름=', sana.name)
+            document.writeln('sana 나이=', sana.age)
+            document.writeln('sana 지역=', sana.address)
+            document.writeln('sana =', sana)
+            console.log('sana =', sana)
+
+            // 객체에 속성 추가
+            sana.height = 172
+            console.log('sana=', sana)
+
+            // 객체의 메소드는 함수 리터럴로 정의합니다
+            // 새로운 속성 hello 추가 값은 함수 -> hello 는 객체의 메소드가 됩니다
+            // arrow function 은 익명 객체 형태여서 this를 사용할 수 없다 
+            sana.hello = function() {
+                alert(`안녕. 세계! ${this.name}`)
+            }
+            // 객체 메소드 호출
+            sana.name = 'saaannaaa' 
+            // sana.hello()
+
+            // 구성요소가 없는 객체리터럴 선언
+            const momo = {}
+            momo.color = 'red'
+            console.log('momo : ', momo)
+            // 배열값이 없는 빈 배열 선언 
+            const arr = []
+            // 요소의 타입이 달라도 저장 가능
+            const arrr = ['a', 123, new Date()]
+
+            // 배열의 요소로 서로 다른 객체 저장 
+            const objarr = [momo, sana]
+            console.log(objarr)
+
+
+        </script>
+
+        <!-- 
+            ********************************************************
+            공공데이터 REST API 응답 데이터 타입 중 하나가 자바스크립트 오브젝트와 변환되는
+            JSON 문자열입니다 
+            ********************************************************
+            REST API 는 데이터를 전송받을 때 사용하는 하나의 규칙입니다
+            - 1. 서버의 주소, 파라미터(요청값), method, 자원의 위치(url 에 포함)를 요청
+            - 2. xml, json 형식 데이터를 응답
+
+            rest api 요청을 자바스크립트 비동기 통신 방식으로 보냄
+            -> 비동기 통신은 백그라운드에서 요청을 보냄
+         -->
+    </pre>
+
+</body>
+</html>

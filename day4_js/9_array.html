@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Java Script의 배열</h3>
+    <ul>
+        <li>-자바와의 차이점은 배열의 크기가 동적입니다.- 자바의 리스트와 JS의 배열이 비슷하다</li>
+        <li>-인덱스0부터 시작, 배열 요소 접근은 배열이름[인덱스]</li>
+        <li>-주요특징: 메소드가 많음, 
+            push()-입력,pop() -제거 ... 
+        </li>
+    </ul>
+    <pre style="font-size : 1rem; font-family: inherit;">
+    <script>
+        //document.write 또는 wirteln 메소드 : 웹문서에 문자열 출력
+        const names = [];        // 내용이 없는 배열 선언
+        // arr1 = ['a', 'b'];   // 오류 : const 입니다. 배열 자체를 바꿀 수 없습니다.
+        document.writeln("배열 생성 ", names);
+
+        names.push('사나');      // const 배열이나 배열 요소를 변경 할 수 있습니다.
+        names.push('쯔위');
+        names.push(100);
+        console.log(names.push("100"));
+        
+        document.write('<hr>')
+        document.write('<h3>names 배열 요소 </h3>');
+        document.writeln("names = ", names);
+        names.pop()
+        document.writeln("pop후 names = ", names);
+        names.push('모모');
+        document.writeln("sort 전 names = ", names);
+        names.sort()
+        document.writeln('sort 후 names = ', names)
+        names.reverse()
+        document.writeln('reverse 후 names = ', names)
+        // 배열 요소의 삭제 - 위치와 개수를 지정하기
+        names.push('aaa')       //인덱스 : 3
+        names.push('bbb')
+
+
+        document.writeln("splice 하기 전 names =", names)
+        names.splice(3, 1)       //인덱스번호 : 3, 삭제할 갯수 : 1
+        document.writeln("splice(3, 1) 결과 names =", names)
+        names.splice(3, 2)       //인덱스번호 : 3, 삭제할 갯수 : 2
+        document.writeln("splice(3, 2) 결과 names =", names)  
+        //이외에도 배열을 조작하는 많은 메소드가 있습니다. w3schools 참고해서 사용합니다
+        //지금까지 메소드는 names베열 요소를 변경합니다 
+
+
+        document.writeln('<span>for문으로 배열요소 출력하기</span>')
+        for(let i = 0; i < names.length; i++){
+            document.writeln('names ',[i],': ',names[i])
+        }
+
+
+        //**************************************************************************
+        document.write('리턴값이 있는 메소드입니다 ')
+        document.writeln(names.join('*'))
+        document.write('배열의 크기를 저장하는 속성')
+        document.writeln("name 크기 =", names.length)
+        //찾기, 배열에서 요소 위치 찾기
+        document.writeln('모모의 위치')
+        document.writeln("names.indexOf('모모') : ", names.indexOf('모모'))
+        document.writeln('배열에 모모가 있는지')
+        document.writeln("names.includes('모모') : ", names.includes('모모'))
+        document.writeln("names.includes('나연') : ", names.includes('나연'))
+
+
+        document.write('<hr>')
+        document.writeln('<h4>for문으로 배열요소 출력하기</h4>')
+        for(let i =0; i<names.length; i++){
+            document.writeln('names ',[i],': ',names[i])
+        }
+
+        // (참고) 각자 조사하기 : 자바스크립트 for 에 추가된 형식
+        //      for(...in 배열),
+        //     for (... of 배열 또는 컬렉션 ) : 배열 요소를 반복자가 순회  
+        document.writeln('<span>for ..of (참고)</span>')
+        for(const item of names) {
+            // 예시 : 출력 배열값
+            // document.writeln(item)
+            // 자바스크립트는 템플릿 리터럴(멀티라인, 표현식) 기능이 있습니다. ``(백틱) 기호 사용
+            document.writeln(`${item}`)  // 변수 또는 수식 표현식을 ${} 기호에 표시 ``(백틱) 기호 사용
+        }
+
+        const temp = `첫번째 라인
+        두번째 라인
+        세번째 라인`
+
+        console.log(temp)
+        document.writeln(temp)
+
+        document.writeln('<span>for ..in (참고)</span>')
+        for(const item in names) {
+            //예시 : 출력 [배열값]
+            document.writeln(item)      // 배열과 컬렉션 각각 실행 결과가 다릅니다.
+            // index 값 속성만 출력됩니다
+        }
+
+
+
+
+        //for문 잘 안씀
+        //forEach(함수)가 더 많이 쓰입니다.-메소드의 인자가 함수다 =콜백함수
+        names.forEach(function (item, index, array) {
+            //forEach()의 인자 순서는 정해져있다 무조건 value string  number index number array(string | number)
+            // 변수명은 상관없다item, index, array 대신 ele, i,arr로 써도 ㄱㅊ 순서가 정해진것뿐
+            document.writeln("item = ", item)
+            document.writeln("index = ", index)
+            document.writeln("array = ", array)
+
+            document.write('<hr style="border:0.2px dashed gray">')
+
+        })
+        
+        // document.write('<hr>')
+
+        names.forEach(function (item, index) {
+            // forEach()의 인자 순서는 정해져있다 무조건 value string  number index number array(string | number)
+            // 변수명은 상관없다item, index, array 대신 ele, i,arr로 써도 ㄱㅊ 순서가 정해진것뿐
+            document.writeln("item = ", item)
+            document.writeln("index = ", index)
+            // document.write('<hr style="border:0.2px dashed orange">')
+
+        })
+        document.write('<hr>')
+        names.forEach(function (item) {
+            //forEach()의 인자 순서는 정해져있다 무조건 value string  number index number array(string | number)
+            // 변수명은 상관없다item, index, array 대신 ele, i,arr로 써도 ㄱㅊ 순서가 정해진것뿐
+            document.writeln("item = ", item)
+            document.write('<hr style="border:0.2px dashed red">')
+
+        })
+        //위를 화살표 함수로
+        document.write('<hr>')
+        names.forEach((item) => {
+            //forEach()의 인자 순서는 정해져있다 무조건 value string  number index number array(string | number)
+            // 변수명은 상관없다item, index, array 대신 ele, i,arr로 써도 ㄱㅊ 순서가 정해진것뿐
+            document.writeln("item = ", item)
+            document.write('<hr style="border:0.2px dashed green">')
+
+        })
+        document.write('<hr>')
+        //화살표 함수를 변수로 선언, 함수 실행코드 1줄일때 {}생략
+        const printItem = (item) => document.write('item : ', item)
+        names.forEach(printItem)
+
+
+
+
+    </script>
+    </pre>
+</body>
+
+</html>

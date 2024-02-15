@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>HTML요소의 집합(HTML Collection)을 다루는 예시 </h3>
+    <ul>
+        <li>사나</li>
+        <li>다현</li>
+        <li>모모</li>
+        <li>나연</li>
+        <li>쯔위</li>
+    </ul>
+    <script>
+        //getElementById : 요소를 1개만 가져옵니다
+        //getElementByXXXX : 요소를 여러개 가져오는 메서드 
+        //      1)태그이름 2)클래스이름   
+        const lis = document.getElementsByTagName('li')
+        console.log(lis)
+        console.log('lis 변수 타입',typeof lis)
+
+        //주의할 점: lis 는 <li> 요소의 집합. 배열이 아니고 collection 입니다
+        //                  ㄴ 그래서, forEach 를 사용하려면 배열로 바꿔줘야 함.
+
+        const liArr = Array.from(lis)
+        console.log(liArr)
+
+        liArr.forEach((item) => {
+
+            if(item.innerHTML == '모모')
+                item.style.color = 'red'
+            
+            if(item.innerHTML == '다현'){
+                item.innerHTML = 'dahyeon'
+                item.style.color = 'blue'
+            }
+
+            document.write(`li 요소 내용=${item.innerHTML} `)
+        })
+
+
+    </script>
+</body>
+</html>

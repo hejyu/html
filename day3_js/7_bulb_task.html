@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .div_1 {
+        border: 1px solid green;
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="div_1">
+        <div>
+            <h1>에너지 절약을 실천합니다</h1>
+            <h2>현재 상태 : <span id="text_status"></span> </h2>
+            <img src="" alt="" id="bulb" onclick="bulbOnOff()" title="클릭하면 ON/OFF 됩니다">
+        </div>
+        <div>
+            <button onclick="bulbOn()" id="on">불을 켜주세요.</button>
+            <button onclick="bulbOff()" id="off">불을 꺼주세요.</button>
+        </div>
+    </div>
+    
+    <script>
+        // ************************ 0. 요소 속성 초기화 ************************ 
+        text_status.innerHTML = "OFF"
+        text_status.style.color = "red"
+        bulb.src = "../images/pic_off.gif"
+        bulb.style="cursor: pointer"
+        off.disabled = true
+
+        // ************************ 1. 함수 선언 ************************ 
+        const bulbOn = function() {
+            bulb.src = "../images/pic_on.gif"
+
+            on.disabled = true          // 비활성화
+            off.disabled = false        // 활성화
+
+            text_status.innerHTML = "ON" 
+            text_status.style.color = "green"
+        }
+
+        const bulbOff = function() {
+            bulb.src = "../images/pic_off.gif"
+            off.disabled = true    
+            on.disabled= false
+
+            text_status.innerHTML = "OFF"
+            text_status.style.color = "red"
+        }
+
+        const bulbOnOff = function() {
+            if(text_status.innerHTML == 'ON')
+                bulbOff()
+            else 
+                bulbOn()
+        }
+    </script>
+</body>
+</html>

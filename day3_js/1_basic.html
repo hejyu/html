@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트 시작</title>
+
+  <style>
+    /*  */
+    body {
+      margin: 10px;
+    }
+    td {
+      text-align: center;
+    }
+  </style>
+  <script>
+      // ******************** "use strict": 선언하지 않고 변수 사용 불가능하다는 의미 ******************** 
+      "use strict"
+      // ******************** js는 문장 종료 ; 생략 가능 ********************
+      // ******************** const 키워드는 상수 형태로 선언한 변수이기 때문에 변경 불가능 ********************
+      const name ="hong";
+      console.log(name)
+      // ********************변수 선언(과거 버전은 var 로 선언. {} (범위) 내 지역변수 문제 발생) ********************
+      let age = 24
+      age = 29
+      console.log(age)
+      // ******************** js는 변수를 선언 키워드 없이도 사용 가능. (권장하지 않음) ********************
+      address = "서울"
+      address = "경기"
+      console.log(address)
+      name="sana"
+      // ******************** 오류 발생 코드 다음에 명령문 실행 가능 여부 확인 ********************
+      console.log("이 문장이 콘솔창에 출력이 되나요?")
+  </script>
+</head>
+  <!--  -->
+<body>
+  <h3>JavaScript Keywords</h3>
+  <a href="https://www.w3schools.com/js/js_reserved.asp" target="_blank">참고</a>
+  <ul>
+    <li>var</li>
+    <li>let</li>
+    <li>const</li>
+    <li>if</li>
+    <li>switch</li>
+    <li>for</li>
+    <li>function</li>
+    <li>return</li>
+    <li>try</li>
+  </ul>
+  <hr>
+  <h3>자바스크립트 변수 시작문자</h3>
+  <a href="https://www.w3schools.com/js/js_variables.asp" target="_blank">참고</a>
+  <ul>
+    <li>A letter (A-Z or a-z)</li>
+    <li>A dollar sign ($)</li>
+    <li>Or an underscore (_)</li>
+  </ul>
+  <hr>
+  <a href="https://www.w3schools.com/js/js_operators.asp" target="_blank">참고</a>
+  <h3>자바스크립트 산술 연산</h3>
+  <table class="table table-hover" style="width: 700px;margin: auto;">
+    <tbody>
+      <tr>
+        <th style="width:25%">Operator</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>+</td>
+        <td>Addition</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>Subtraction</td>
+      </tr>
+      <tr>
+        <td>*</td>
+        <td>Multiplication</td>
+      </tr>
+      <tr>
+        <td>**</td>
+        <td>Exponentiation (ES2016)</td>
+      </tr>
+      <tr>
+        <td>/</td>
+        <td>Division</td>
+      </tr>
+      <tr>
+        <td>%</td>
+        <td>Modulus (Division Remainder)</td>
+      </tr>
+      <tr>
+        <td>++</td>
+        <td>Increment</td>
+      </tr>
+      <tr>
+        <td>--</td>
+        <td>Decrement</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h3>자바스크립트 대입 연산</h3>
+  <table class="table table-hover" style="width: 700px;margin: auto;">
+    <tbody>
+      <tr>
+        <th style="width:25%">Operator</th>
+        <th>Example</th>
+        <th>Same As</th>
+      </tr>
+      <tr>
+        <td>=</td>
+        <td>x = y</td>
+        <td>x = y</td>
+      </tr>
+      <tr>
+        <td>+=</td>
+        <td>x += y</td>
+        <td>x = x + y</td>
+      </tr>
+      <tr>
+        <td>-=</td>
+        <td>x -= y</td>
+        <td>x = x - y</td>
+      </tr>
+      <tr>
+        <td>*=</td>
+        <td>x *= y</td>
+        <td>x = x * y</td>
+      </tr>
+      <tr>
+        <td>/=</td>
+        <td>x /= y</td>
+        <td>x = x / y</td>
+      </tr>
+      <tr>
+        <td>%=</td>
+        <td>x %= y</td>
+        <td>x = x % y</td>
+      </tr>
+      <tr>
+        <td>**=</td>
+        <td>x **= y</td>
+        <td>x = x ** y</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h3>자바스크립트 비교연산</h3>
+  <table class="table table-hover" style="width: 700px;margin: auto;">
+    <!-- thead 태그는 제목 행들을 묶는 태그, tbody 내용에 해당하는 행들을 묶는 태그 -->
+    <tbody>
+      <tr>
+        <th style="width:12%">Operator</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>==</td>
+        <td>값 동등 비교</td>
+      </tr>
+      <tr>
+        <td>===</td>
+        <td>값과 형식 동등 비교</td>
+      </tr>
+      <tr>
+        <td>!=</td>
+        <td>값 불일치 비교</td>
+      </tr>
+      <tr>
+        <td>!==</td>
+        <td>not equal value or not equal type</td>
+      </tr>
+      <tr>
+        <td>&gt;</td>
+        <td>greater than</td>
+      </tr>
+      <tr>
+        <td>&lt;</td>
+        <td>less than</td>
+      </tr>
+      <tr>
+        <td>&gt;=</td>
+        <td>greater than or equal to</td>
+      </tr>
+      <tr>
+        <td>&lt;=</td>
+        <td>less than or equal to</td>
+      </tr>
+      <tr>
+        <td>?</td>
+        <td>ternary operator</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="text-align: center;">동등비교연산 예시<br>
+    <img alt="비교연산예시" src="20221227.png" width="400px">
+  </p>
+  <hr>
+  <h3>자바스크립트 논술 연산</h3>
+  <table class="table table-hover" style="width: 700px;margin: auto;">
+    <tbody>
+      <tr>
+        <th style="width:12%">Operator</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>&amp;&amp;</td>
+        <td>logical and</td>
+      </tr>
+      <tr>
+        <td>||</td>
+        <td>logical or</td>
+      </tr>
+      <tr>
+        <td>!</td>
+        <td>logical not</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h3>자바스크립트 타입 연산</h3>
+  <ul>
+    <li>typeof</li>
+    <li>instanceof</li>
+  </ul>
+  <hr>
+  <h3>자바스크립트 데이터 타입</h3>
+  <a href="https://www.w3schools.com/js/js_datatypes.asp">참고</a>
+  <div>
+    <h3>JavaScript Datatypes</h3>
+    <p>
+      1. String : 문자열 리터럴은 '' 또는 "" 기호 사용<br>
+      2. Number : 정수 또는 실수<br>
+      3. Bigint<br>
+      4. Boolean : true, false<br>
+      5. Undefined : 자바스크립트 특징. 값이 없는 변수는 undefined(타입,값) <br>
+      6. Null<br>
+      8. Object : 객체.(배열 포함)
+    </p>
+  </div>
+</body>
+
+</html>

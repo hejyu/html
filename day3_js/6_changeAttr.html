@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>JS로 태그 요소의 속성값을 변경할 수 있습니다</h2> 
+    <!-- img 태그로 그림을 화면에 표시합니다. 그림파일의 url은 src 속성값으로 설정합니다 -->
+    <img src="../images/pic_off.gif" alt="" id="bulb">
+    <button onclick="bulbOn()" id="on">켜주세요</button>
+    <button onclick="bulbOff()" id="off">꺼주세요</button>
+    <script>
+        // const bulb = document.getElementById("bulb")
+        // 버튼 비활성화 동작
+        // const on = document.getElementById('on')
+        // const off = document.getElementById('off')
+        off.disabled = true
+
+        const bulbOn = function() {
+            bulb.src = "../images/pic_on.gif"
+            // 요소의 disabled 속성을 설정 
+            on.disabled = true          // 비활성화
+            off.disabled = false        // 활성화
+        }
+
+        const bulbOff = function() {
+            bulb.src = "../images/pic_off.gif"
+            off.disabled = true    
+            on.disabled= false
+        }
+    </script>
+</body>
+</html>

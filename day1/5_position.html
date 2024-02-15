@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Honk&family=Noto+Sans+KR:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        html{
+            /* 16px(font-size 비율px) * 0.625(font-size 비율%) = 10px(font-size 비율px) = 1rem */
+            font-size : 62.5%;
+        }
+        /* 모든 요소에 적용할 스타일 선택자 (와일드카드 문자)  */
+        * {
+            box-sizing: border-box;
+            font-family: "Honk";
+        }
+        body {
+            /* 글씨 크기 16px */
+            font-size: 1.6rem;
+        }
+        div {
+            box-sizing: border-box;
+            border: 2px dotted green;
+            width: 10rem;
+            height: 12rem;
+        }
+        /* 선택자 : class 이름을 사용합니다. class 속성값 모든 child 요소에 적용 */
+        .child {
+            width: 8rem;
+            height: 8rem;
+            padding : 1rem;
+            margin: 1rem;
+        }
+        .child_relative{
+            /* 현재 위치에서 좌표 이동할 수 있습니다. 좌표값은 top, left  */
+            position: relative;
+            top : 2rem;
+            left: 2rem;
+            border: 1px solid brown;
+        }
+
+        .child_absolute{
+            /* 좌표값은 top, left 를 전체 화면 기준으로 정합니다
+                top, left 는 브라우저 화면 맨 왼쪽 위가 0 입니다.
+                top 은 세로, left 는 가로 방향으로 값이 증가합니다.
+            */
+            position: absolute;
+            top : 2rem;
+            left: 2rem;
+            border: 1px solid brown;
+            background-color: beige;
+        }
+
+        .child_fixed{
+            /* 좌표값은 top, left 를 전체 화면 기준으로 정합니다
+                top, left 는 브라우저 화면 맨 왼쪽 위가 0 입니다.
+                top 은 세로, left 는 가로 방향으로 값이 증가합니다.
+            */
+            position: fixed;
+            top : 2rem;
+            left: 2rem;
+            border: 1px solid rgb(10, 20, 219);
+            background-color: tomato;
+        }
+    </style>
+</head>
+<body>
+    <h3>position</h3>
+    <p>웹문서 상에서 요소를 배치할 때 기존 흐름과 다르게 할 수 있는 속성이 있습니다.</p>
+    <div>1
+        <div class="child1"> <p>div 요소 child 클래스 </p></div>
+    </div>
+    <div>2
+        <!-- 클래스 이름을 여러가지 나열해서 적용시킬 수 있습니다. -->
+        <div class="child child_relative">abce</div>
+    </div>
+    <div>3
+        <div class="child child_absolute">abc12321312e1111111111111111111111111111</div>
+    </div>
+    <div>4
+        <div class="child child_fixed">555555abc12321312e</div>
+    </div>
+</body>
+</html>

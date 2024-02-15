@@ -1,0 +1,235 @@
+/* 글꼴 */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+/* 예시 사이트의 초기화 작업- 기본적으로 가지고 있는 값들을 초기화 시킴 */
+html, body,div, span, ul,li,h2,h3,h4,h6{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+html{
+    /* 1 rem = 10px */
+    font-size: 62.5%;
+}
+body{
+    /* 글꼴 설정 */
+    font-family: 'Roboto','Noto Sans KR';
+    letter-spacing: -0.02rem;
+    color:  #222;
+    /* 드래그 방지 */
+    user-select: none;
+    /* 글꼴 크기 16px */
+    font-size: 1.6rem;
+}
+*{
+    /* 너비와 높이 크기에 padding과 border 굵기 포함하여 계산함 */
+    box-sizing: border-box;
+}
+ul{
+    /* li태그 앞에 붙이는 기호 없음 */
+    list-style: none;
+}
+
+/* div#contents 영역 */
+#contents{
+    width: 128rem;
+    padding: 0 4rem 9rem;
+    margin: 0 auto;
+    background-color: salmon;
+    border: 1rem dashed blueviolet;
+
+}
+/* 왼쪽메뉴 */
+#left-menu{
+    width: 15rem;
+    margin-top: 2.2rem;
+    margin-bottom: 7rem;
+    display: inline-block;
+    /* border: 1px dashed brown; */
+    vertical-align: top;
+
+}
+/* 자식태그 li */
+#left-menu>li{
+    cursor: pointer;
+}
+
+#left-menu>li>span{
+    display: block;
+    padding: 1.8rem 0;
+    border-bottom:0.1rem solid #e4e4e4;
+    font-size: 1.4rem;
+    font-weight: 700;
+    /* 아이콘 표시: 백그라운드 이미지로 함 */
+    background-image: url(./img/ico/ic-menu-down@2x.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 1.6rem;
+}
+/* 오른쪽 상품 영역 */
+#cont-wrap {
+    width: calc(100% - 22.4rem);
+    display: inline-block;
+    border: 1px dashed blanchedalmond;
+}
+/* cont-wrap 영역 안 : 현재 웹페이지 위치를 알려주는 텍스트 */
+.depth{
+    padding-top: 4rem;
+    margin-bottom: 6rem;
+    display: flex;
+    align-items: center;
+
+
+}
+
+.depth>li{
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #747474;
+    vertical-align: middle;
+}
+/* depth의 li 중에 가장 마지막 선택  */
+.depth>li:last-child{
+    font-weight: 700;
+    color: #071d3d;
+}
+i.ic-home {
+    display: block;
+    width: 1.4rem;
+    height: 1.4rem;
+    background-image: url("img/ico/ic-home@2x.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+}
+
+
+/* + 기호는 인접 형제 선택자,
+::before 는 가상 요소(Virtual Element).
+선택한 요소의 시작 부분(콘텐츠의 첫 부분)에 내용을 생성
+::after 는 선택요소의 뒤에 내용을 생성하는 가상요소 
+*/
+.depth>li+li::after{
+    content: '';
+    display: block;
+    width: 0.6rem;
+    height: 1.2rem;
+    margin: 0 1rem;
+    background-image: url(./img/ico/ic-depth@2x.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* 상품 영역 */
+.cont-box > .title > h4 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: #071d3d;
+}
+
+/*  title 요소의 후손을 선택하는 기호 : 공백  */
+.cont-box > .title span {
+    font-size: 2rem;
+    color: #747474;
+    font-weight: 500;
+    margin-left: 0.8rem;
+    vertical-align: middle;
+    position: relative;
+    top: -0.2rem;
+    border: 1rem dashed blue;
+}
+
+/* 상품 목록 */
+.item-list {
+    display : grid;
+    align-items: flex-start;
+}
+
+
+/* .item-list.row-3 는 item-list와 row-3 클래스이름을 모두 갖는 요소 */
+.item-list.row-3 {
+    /* 세 개의 행을 생성하고 각 행의 크기를 1fraction(파편)로 기준값 설정
+        1fr 로 하면 요소의 너비를 동등하게 n등분 합니다.
+    */
+    /* row가 3개. 컨테이너 높이를 3등분 */
+    grid-template-rows: repeat(3,1fr);
+    row-gap: 6rem;
+}
+.item-list.col-4 {
+    /* column 이 4개. 너비를 4등분. 1fr 이므로 같은 크기로 합니다. */
+    grid-template-columns: repeat(4,1fr);
+    column-gap: 2rem;
+}
+
+.item-list > li > .img {
+    width: 100%;
+    height: 23rem;
+    background-color: #fff;
+    /* 컨테이너보다 작은 이미지는 크게, 큰 이미지는 작게 그리고 비율도 맞춰서 예쁘게 */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.item-list > li > .desc {
+    margin-top: 2rem;
+}
+
+.item-list > li > .desc > h6 {
+    width: 22rem;
+    height: 4rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+
+}
+
+.item-list li .desc .price {
+    margin-top: 2rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.won {
+    font-size: 1.8rem;
+    font-weight: initial;
+    margin-left: 0.2rem;
+    vertical-align: middle;
+}
+
+
+.label {
+    display: inline-block;
+    /* min-width 최소 width. 내용이 많아지면 커집니다 */
+    min-width: 4rem;
+    height: 1.6rem;
+    padding: 0 0 4rem;
+    /* 줄 간격 글자가 출력되는 1라인의 높이 */
+    line-height: 1.6rem;
+    /* 요소의 텍스트 정렬 속성 */
+    text-align: center;
+    font-size: 1.2rem;
+    /* #ffffff 를 줄여서 씁니다 */
+    color: #fff;
+}
+
+.item-list > li .desc .label-wrap {
+    margin-top: 1rem;
+}
+
+
+.label.blue {
+    background-color: #5b8ebd;
+    /* 다른 스타일 정의와 충돌 될 때 무조건 우선순위 최상 */
+    color: #fff !important;
+}
+
+.label.gray {
+    background-color: #747474;
+    /* 다른 스타일 정의와 충돌 될 때 무조건 우선순위 최상 */
+    color: #fff !important;
+}
+
+

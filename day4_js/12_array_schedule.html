@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {width: 800px;}
+    /* 테이블 크기 800픽셀에 대한 백분율로 너비를 설정합니다 */
+    th { width: 13%; background-color: tomato; color: white;}
+    td {width: 10%;}
+    th, 
+    td {
+        border: 1px solid tomato; padding: 7px 12px; text-align: center;
+    }
+</style>
+<body>
+    <h3>오늘의 스케쥴</h3>
+    <!-- 자바스크립트 배열에 저장된 값으로 시간표를 만들어 봅니다 -->
+    <table>
+        <tr id="time">
+        
+        </tr>
+
+        <tr id="todo">
+        
+        </tr>
+    </table>
+    <script>
+        const time = ['09:00','11:00','12:30','14:00','16:45']
+        const todo = ['수업','과제','점심식사','주간회의','자료조사']
+        const fn_make_table = function() {
+            // 첫번째 행에 들어갈 문자열을 만듭니다
+            let result = '<th>TIME</th>'
+            time.forEach((val) => {
+                result += `<td>${val}</td>`
+                console.log(result)
+            });
+            document.getElementById('time').innerHTML = result
+
+            // 두번째 행에 들어갈 문자열을 만듭니다
+            result = '<th>TODO</th>'
+            todo.forEach((val) => {
+                result += `<td>${val}</td>`
+                console.log(result)
+            });
+            document.getElementById('todo').innerHTML = result
+        }
+
+        //***********************함수 호출**********************************
+        fn_make_table()
+    </script>
+</body>
+</html>

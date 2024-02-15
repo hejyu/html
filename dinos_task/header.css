@@ -1,0 +1,146 @@
+/* 글꼴 */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+/* 예시 사이트의 초기화 작업- 기본적으로 가지고 있는 값들을 초기화 시킴 */
+html, body,div, span, ul,li,h2,h3,h4,h6{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+html{
+    /* 1 rem = 10px */
+    font-size: 62.5%;
+}
+body{
+    /* 글꼴 설정 */
+    font-family: 'Roboto','Noto Sans KR';
+    letter-spacing: -0.02rem;
+    color:  #222;
+    /* 드래그 방지 */
+    user-select: none;
+    /* 글꼴 크기 16px */
+    font-size: 1.6rem;
+}
+*{
+    /* 너비와 높이 크기에 padding과 border 굵기 포함하여 계산함 */
+    box-sizing: border-box;
+}
+*::before{
+    /* 너비와 높이 크기에 padding과 border 굵기 포함하여 계산함 */
+    box-sizing: border-box;
+}
+
+ul{
+    /* li태그 앞에 붙이는 기호 없음 */
+    list-style: none;
+}
+
+/* div#header 영역 */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+.desktop-only {
+    display: inherit;
+}
+
+/* 서브 헤더 영역 */
+.sub-wrap {
+    width: 100%;
+    background-color: #04152b;
+}
+
+/* 서브 헤더 내용 영역 */
+.sub-wrap .sub-con {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 128rem;
+    height: 3.6rem;
+    padding: 0 4rem;
+    margin: 0 auto;
+}
+
+.sub-wrap .sub-con .site-tab {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.sub-wrap .sub-con .site-tab > li {
+    height: 100%;
+    line-height: 3.6rem;
+    padding: 0 2rem;
+    font-size: 1.2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.sub-wrap .sub-con .user-tab {
+    display: flex;
+    align-items: center;
+}
+
+.sub-wrap .sub-con .user-tab > li {
+    position: relative;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+    color: #fff;
+    cursor: pointer;
+}
+.sub-wrap .sub-con .user-tab > li + li::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0.1rem;
+    height: 1rem;
+    background-color: rgba(255,255,255,0.5);
+    transform: translateY(-50%);
+}
+
+/* 메인 헤더 영역 */
+.nav-wrap {
+    width: 100%;
+    background-color: #071d3d;
+}
+
+/* 메인 헤더 내용 */
+.nav-wrap .nav-con {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 128rem;
+    height: 9.4rem;
+    padding: 0 4rem;
+    margin: 0 auto;
+}
+
+/* 메 */
+.nav-wrap .nav-con > img {
+    height: 4rem;
+}
+
+.nav-wrap .nav-con .gnb-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.6rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.nav-wrap .nav-con .gnb-wrap > li {
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: 500;
+    padding: 0 6rem;
+    cursor: pointer;
+}

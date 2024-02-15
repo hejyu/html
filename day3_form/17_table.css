@@ -1,0 +1,33 @@
+/* 글꼴 */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+
+html, body,div, span, ul,li,h2,h3,h4,h6,table,tr,td{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+html{
+    /* 1 rem = 10px */
+    font-size: 62.5%;
+}
+
+.title{
+    text-align: center;
+    
+}
+
+.table_box {
+    width: 100%;
+    border: 1rem solid lightcoral;
+}
+
+tr {
+    background-color: bisque;
+}
+td {
+    text-align: center;
+    border: 1px solid lightcoral;
+    background-color: gainsboro;
+}

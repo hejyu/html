@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /* div 블록요소에 크기를 정합니다 -외부여백,내부여백,너비,높이 */
+        div {
+            border:  1px solid rgb(210, 91, 91);
+            margin:  3rem;
+            padding: 3rem;
+            /* 20* 16px = 320  */
+            width: 20rem;
+            height: 10rem;
+            /* 결론 : 화면에 보이는 사각형의 크기는 width(또는 height) + 내부여백(padding)*2 + 테두리(border)*2 */
+
+            /*  class 이름을 선택자로 사용했습니다. class 이름은 childd1 이고 기호 . 으로 표시합니다. */
+            div.chile1 {
+                /* width, height 를 지정할 때 내부여백과 테두리가 표함이 됩니다 */
+                box-sizing: border-box;
+            }
+           
+        }
+
+        /* main의 컨텐츠를 적절하게 보이도록 크기와 여백을 정해보세요. */
+        main {
+            background-color: beige;
+            border:  1px solid rgb(210, 91, 91);
+            box-sizing: border-box;
+            width: 50rem;
+            padding: 2rem;
+            /* 테두리는 `굵기` `모양 ` `색상`을 순서대로 정합니다. */
+            border-top: 1px dotted red;
+            border-bottom: 1px solid gray;
+            margin: 1rem 2rrem 3rem 4rem;
+            /* 결론 : 4가지 위치에 따라 값을 설정하는 border , padding, margin 은
+                    4개의 값을 위부터 시계방향으로 모두 설정
+                    2개의 값으로 위/아래 왼쪽/오른쪽 설정
+                    1개의 값으로 모두 같은 값ㅇ을 설정
+                    3개의 값은 ? 정답  위 윈/오른쪽 아래 */
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- 블록 요소를 화면 가로 방향으로 중앙에 배치할 때, auto를 설정합니다 -->
+    <main style="margin: auto;">
+        <h3>블록요소 CSS</h3>
+        <div class="chile1">
+            <p>너비, 높이를 설정할 수 있습니다. 이 때 크기를 지정하는 단위는 주로 px, rem, em % 입니다.
+                이 중에서 px, rem 은 html 요소를 절대값으로 합니다. em, %는 바로 윗 단계 상위 태그를
+            </p>
+        </div>
+        
+    </main>
+</body>
+</html>

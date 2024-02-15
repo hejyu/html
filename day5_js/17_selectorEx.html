@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 입력 요소에 대한 선택자 연습  css HTML 요소에 접근 -->
+    <style>
+        li {
+            list-style: none;
+        }
+        /* li:nth-child(3) {
+            padding: 7px 14px 0px 14px;
+            margin:  4px;
+        } */
+        
+        input, 
+        label,
+        button {
+            font-size: 1.2rem;
+        }
+        
+        fieldset {
+            width: 400px;
+            padding: 7px 14px;
+            margin: 4px;
+        }
+        input[type=text],
+        input[type=number] {
+            width: 200px; /* px : 절대값 단위 */
+            padding: 7px 14px;
+            margin:  4px;
+            font-size: 1.2rem;
+        }
+
+        /* 체크박스 중에 checked 상태 - 요소에 상태 표시 연결 기호 ':'
+            바로 뒤에 같은 계층 요소 1개를 연결한다 기호  '+' 
+        */
+        input[type=checkbox]:checked + label {
+            color : blue;
+        }
+
+        /*  focus : 포커스 상태에 대한 선택자  */
+        input[type=checkbox]:focus {
+            outline: 2px solid blueviolet;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- 체크박스로 선택자 연습 -->
+    <h3>여러가지 입력 요소로 선택자 연습</h3>
+    <ul>
+        <li><input type="text" name="name" id="" placeholder="이름을 입력하세요"></li>
+        <li><input type="number" name="age" id="" placeholder="나이를 입력하세요"></li>
+        <li>
+            <fieldset>
+                <legend>취미를 선택하세요</legend>
+                <input type="checkbox" name="hobby" id="swimming" value="수영">
+                <label for="swimming">수영</label>
+                <input type="checkbox" name="hobby" id="ski" value="스키">
+                <label for="ski">스키</label>
+                <input type="checkbox" name="hobby" id="football" value="축구">
+                <label for="football">축구</label>
+                <input type="checkbox" name="hobby" id="baseball" value="야구">
+                <label for="baseball">야구</label>
+                <input type="checkbox" name="hobby" id="running" value="달리기">
+                <label for="running">달리기</label>
+            </fieldset>
+        </li>
+        <li><button onclick="save()">저장하기</button></li>
+        <!-- type은 기본값(submit) button (form 태그 없을 때) -->
+    </ul>
+    <script>
+        //화면이 만들어질때 실행합니다
+        
+        console.log(document.querySelectorAll('input[type="checkbox"]'))
+        
+        // 버튼 클릭 실행
+        const save = function() {
+            const name = document.querySelector('input[name="name"]')
+            const age = document.querySelector('input[name="age"]')
+            const temp = document.querySelectorAll('input[type="checkbox"]')    
+            // let hobbies = document.querySelectorAll('input[name="hobby"]:checked')
+            let hobbies = document.querySelectorAll('input[type="checkbox"]:checked')
+
+            // console.log(name.value)
+            // console.log(age.value)
+            // temp.forEach((ele,i) => console.log('checkbox', i, '=', ele))
+            // console.log(temp)
+            // console.log(hobbies)
+            
+            //사용자 양식에는 필수 입력 항목이 있습니다.
+            //이름,나이가 필수 항목이라면 입력값 검사를 합니다.
+            //유효성 검사 코드를 작성합니다
+            if(name.value == '') {
+                alert('이름을 입력하세요')
+                name.focus()
+                return      // 함수 종료 
+            }
+
+            if(age.value == '') {
+                alert('나이를 입력하세요')
+                age.focus()
+                return      // 함수 종료 
+            }else if(age.value < 20 || age.value > 100) {
+                alert("유효한 값이 아닙니다")
+                age.focus()
+                return
+            }
+
+            if(hobbies.length == 0) {
+                alert("취미를 제발 하나만 선택해주세요!!")
+                console.log(temp[0])
+                hobbies[0].focus()
+                return
+            }
+
+            let hobbyStr = ''
+            const hobbArr = []      // 변수 선언 위치 주의하세요
+            hobbies.forEach(ele => {
+                // console.log(ele.value)
+                hobbArr.push(ele.value)
+                console.log(hobbArr)
+                
+            })
+
+            hobbyStr =  hobbArr.join(',')   // 기호로 배열 값 연결  
+
+            alert(`${name.value}님(${age.value}세)이 선택한 취미는 ${hobbArr.join(',') }입니다.`)
+            alert('입력 정보 저장 완료')
+
+
+        }
+
+       
+    </script>
+</body>
+</html>

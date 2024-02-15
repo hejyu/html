@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 배송지를 선택하는 요소  -->
+    <form action="success.html">
+        <!-- 지정된 목록에서 입력값을 선택. 드롭다운 메뉴 -->
+        <select name="location" id="">
+            <option value="seoul">서울</option>
+            <!-- 
+                선택 항목에 대한 value 를 생략하면 option 태그의 
+                내용 문자열이 기본값으로 전송됨.  
+                selected 속성으로 기본 선택값 요소 설정
+            -->
+            <option selected>경기</option>
+            <option value="">인천</option>
+            <option value="">춘천</option>
+            <option value="">대전</option>
+        </select>
+        <button>주문</button>
+    </form>
+</body>
+</html>
+
+

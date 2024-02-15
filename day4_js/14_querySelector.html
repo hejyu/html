@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        tr {
+            color: blue;
+            font-weight: 700;
+        }
+        /* 선택자 : id(#) 입니다. */
+        #eunha {
+            color: tomato;
+        }
+        /* 선택자 : class(.) 입니다 */
+        .viviz {
+            font-style: italic;
+        }
+        tr:last-child {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tbody>
+            <tr><td>사나</td></tr>
+            <tr><td>나연</td></tr>
+            <tr><td id="eunha" class="viviz">은하</td></tr>
+            <tr><td class="viviz">신비</td></tr>
+        </tbody>
+    </table>
+    
+    <script>
+        // 2. dom 메서드 : html 요소를 가져오는 메소드
+        // 1) 선택자로 요소를 가져오는 메소드 : querySelector
+        // 2) 요소를 만들어주는 메소드 : createElement
+        // 3) 요소를 여러개 가져오는 메소드 : querySelectorAll
+        // 4) 요소를 추가해주는 메소드  : appendChild
+        // 5) 요소를 여러개 가져오는 메소드 : getElementByTagName, getElementsByClassName
+        // html의 요소를 가져오는 것 
+        // querySelector : 제일 앞에 요소 하나만 가져옴
+        const trOne = document.querySelector('tr')
+        console.log(trOne)
+
+        // querySelector : 요소 전체 가져옴
+        const trAll = document.querySelectorAll('tr')
+        console.log(trAll)
+
+        const tdOne = document.querySelector("#eunha")
+        console.log(tdOne)
+
+        const tdAlll = document.querySelectorAll(".viviz")
+        console.log(tdAlll)
+
+        
+        // getElmentById 대신에 선택자로 요소 가져오기 
+        //                      ㄴ querySelector : 요소 1개
+        //                      ㄴ querySelectorAll : 요소 여러개 
+
+        // 자식 요소를 가져오는 선택자. tr 태그 중에 첫번째 자식 요소 선택.
+        const tr1 = document.querySelector('tr:first-child')	//선택자로 요소 가져오기
+        console.log('tr : ',tr1)
+
+        // 첫번째 tr에 새로운 td 태그 요소 만들어 추가하기
+        const newtd = document.createElement("td")	
+        // createElement("태그이름") : 지정된 이름의 태그 요소 만들기 => <td></td>
+        newtd.innerHTML='테스트'
+        tr1.appendChild(newtd)		//tr1 변수로 지정된 요소의 마지막 자식 요소로 추가하기
+
+        // tr 태그 중 두번째 자식 요소 선택
+        const tr2 = document.querySelector('tr:nth-child(2)')
+        console.log(tr2)
+        // td 태그 생성
+        const newtd2 = document.createElement("td")
+        newtd2.innerHTML='테스트1'
+        // tr2의 자식요소로 추가 
+        tr2.appendChild(newtd2)
+            
+        // tr 태그 중 마지막 자식 요소 선택하여 td 태그의 내용을 '테스트3'으로 추가하세요
+        const tr_last = document.querySelector('tr:last-child')
+        console.log('tr_last : ', tr_last)
+        const newtd3 = document.createElement("td")
+        newtd3.innerHTML = '테스트3'
+        tr_last.appendChild(newtd3)
+
+    
+
+    </script>
+</body>
+</html>
