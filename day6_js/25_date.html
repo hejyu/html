@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>자바스크립트의 Date 객체</h3>
+
+    <hr>
+    <pre style="font-family: inherit; font-size: 1rem;">
+        <script>
+            document.writeln('<h4>현재 날짜 , 시간 </h4>')
+            console.log(new Date())
+            document.writeln(new Date())
+
+            //Locale : 운영체제에 설정된 국가/언어와 관련된 정보 en-US , ko-KR
+            //                      ㄴ 나오는 형식이 다릅니다    2/16/2024
+            document.writeln('toLocaleString : ', new Date().toLocaleString())
+            
+            //local date : 
+            // local 형식 변경 
+            // ㄴ 국가 코드 옵션
+            //          - en-US, ko-KR, zh-CN
+            document.writeln('toLocaleDateString en-US=  : ', 
+                        new Date().toLocaleString('en-US', {
+                            year: 'numeric', month: "2-digit", day: "2-digit"
+                        })
+            )
+
+            document.writeln('toLocaleDateString ko-KR =  : ', 
+                        new Date().toLocaleString('ko-KR', {
+                            year: 'numeric', month: "2-digit", day: "2-digit"
+                        })
+            )
+
+            document.writeln('toLocaleDateString zh-CN =  : ', 
+                        new Date().toLocaleString('zh-CN', {
+                            year: 'numeric', month: "2-digit", day: "2-digit"
+                        })
+            )
+
+
+            document.writeln('<h4>표준시간 </h4>')
+            document.writeln('toUICString(협정 세계시) : ', new Date().toUTCString())
+            document.writeln('toISOString(Korea Standard ISO 형식) : ', new Date().toISOString())
+
+            document.writeln('<h4> 1970.01.01 Standard </h4>')
+            document.writeln(new Date().getTime())
+            
+            document.writeln('<h4> 년도, 월, 일, 시, 분, 초  메소드 </h4>')
+            document.writeln('년도 = ' , new Date().getFullYear())
+            document.writeln('월 = ' , new Date().getMonth() + 1 )   // ** 월 0~ 11 범위
+            document.writeln('일 = ' , new Date().getDate())
+            document.writeln('시 = ' , new Date().getHours())
+            document.writeln('분 = ' , new Date().getMinutes())
+            document.writeln('초 = ' , new Date().getSeconds())
+
+            document.writeln('<h4> 년도, 월, 일, 시, 분, 초 변경 메소드 </h4>')
+            let today = new Date()
+            today.setFullYear(today.getFullYear() + 3)
+            document.writeln('getFullYear() + 3 = ' , today)
+
+            today.setMonth(today.getMonth() + 5)
+            document.writeln('getMonth() + 5 mon = ' , today)
+
+            today.setDate(today.getDate() + 2)
+            document.writeln('getDate() + 2 day = ' , today)
+
+
+
+            let mybirth = new Date('2002-11-03')
+            document.writeln('mybirth = ', mybirth)
+
+
+            document.writeln('<h4> </h4>')
+            document.writeln('<h4> </h4>')
+            document.writeln('<h4> </h4>')
+            document.writeln('<h4> </h4>')
+            document.writeln('<h4> </h4>')
+        </script>
+    </pre>
+</body>
+</html>

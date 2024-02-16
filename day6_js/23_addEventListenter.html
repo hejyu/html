@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>이벤트 핸들러 메소드 addEventListener</h3>
+    <hr>
+
+    <!-- 이벤트 처리 방법1 -->
+    <button id="hello" onclick="hello()">HELLO</button>
+    <button id="hi">하이</button>
+    <pre>
+        <script>
+            let hello = function() {
+                alert("hello")
+                console.log('클릭 이벤트에 대한 함수입니다')
+            }
+    
+            document.getElementById('hi').addEventListener('click',
+                () => {
+                    alert('hiii')
+                    console.log('html 태그에 자바스크립트 코드를 작성하지 않고 이벤트 처리합니다')
+                }    
+            )
+
+            
+
+        </script>
+    </pre>
+    <hr>
+
+    <!-- 이벤트 처리 방법2 -->
+    <input type="text" name="" id="message" placeholder="메시지를 입력하세요">
+    <pre>
+        <script>
+            // change : 요소의 값이 변경될 때 발생하는 이벤트
+            document.getElementById('message').addEventListener('change', () => {
+                let msg = document.getElementById('message')
+                console.log(msg.value)
+            })
+
+            // keyup, keydown
+            document.getElementById('message').addEventListener('keyup', () => {
+                let msg = document.getElementById('message')
+                console.log(msg.value)
+            })
+            
+            
+            // el_msg.addEventListener
+
+        </script>
+    </pre>
+</body>
+</html>

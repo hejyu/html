@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 5rem;
+            height: 5rem;
+            background-color: cadetblue;
+            box-shadow: inset -25px -25px 40px rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+        }
+        span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 4rem;
+            height: 4rem;
+            background-color: cadetblue;
+            box-shadow: inset -25px -25px 40px rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        li {
+            list-style: none;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="border: 1rem solid rgba(255, 0, 0, 0.63); width: 500px; height: 500px;" id="container">
+        <ul style="background-color: darkgoldenrod;" class="cls" id ="rndid">
+            <li><span>a</span></li>
+            <li><span>b</span></li>
+            <li><span>c</span></li>
+            <li><span>d</span></li>
+        </ul>
+    </div>
+
+    <!-- span 클릭하면 alert 띄우고 싶다면
+        (방법)
+        dom 구조인 html 문서는 이벤트를 부모 자식끼리 전파를 합니다. 이것을 이용해봅니다.
+    -->
+    <script>
+        document.getElementById('container').addEventListener('click', (e) => {
+            console.log(e)
+            
+            // 요소에 접근
+            // ******************************************
+            // e.target : HTML Element를 리턴
+            // target : 태그이름#id명.class명
+            console.log(e.target.tagName)
+            if(e.target.tagName === 'SPAN') {
+                alert(`선택한 공은 ${e.target.innerHTML}입니다`)
+            }
+            // ******************************************
+        })
+    </script>
+    <!--  
+        (기존학습내용)
+        span 요소에 click 이벤트 헨들러를 작성합니다
+        => span 5개 모두에게 동일한 작업을 해야합니다
+    -->
+</body>
+</html>

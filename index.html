@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>HTML | CSS | Javascript 수업 내용 </h2>
+    <hr>
+    
+    <div>
+
+    </div>
+    <h3>서버-클라이언트 </h3>
+    <div>
+        <ul>
+            <li>웹서버 : 정적 HTML 페이지 요청에 응답하기 위한 서버</li>
+            <li>웹애플리케이션 서버 : 정적 HTML 페이지 + 동적인 요청(DB 서버 사용자 조회, 저장 등)에 응답 가능한 서버</li>
+        </ul>
+        <h4>동적 웹애플리케이션의 구조</h4>
+        
+        <img src="images/client_server.png" alt="" width="700px">
+
+        <h4>개발환경 Eclipse 셋팅</h4>
+        <ol>
+            <li>작업 공간 workspace 생성</li>
+            <li>이클립스 실행 : eclipse.exe </li>
+            <ul>
+                <li>이클립스 인코딩 : ISO-10646/Unicode(UTF-8) 셋팅
+                    <ul>
+                        <li>Window > Preference > General > Workspace </li>
+                        <li>Window > Preference > Web : HTML, CSS, JSP Files </li>
+                    </ul>
+                </li>
+            </ul>
+            <li>웹 애플리케이션 서버(WAS) 설정 순서
+                <ul>
+                    <li>Apache tomcat 9.0 추가</li>
+                    <ul>
+                        <li>WAS 생성하는 순서</li>
+                        <ol>
+                            <li>Server 뷰(View)로 가기</li>
+                            <li>새 서버 추가 : 마우스 오른쪽 버튼 클릭 > New > Server</li>
+                            <li>서버 유형 선택 : 'Server type' 서버 타입 선택 창 > Apache 카테고리 선택 > Tomcat v9.0 Server 선택 > Next 클릭</li>
+                            <li>서버 실행환경 셋팅
+                                <ul>
+                                    <li>Server's host name : 웹애플리케이션을 테스트하기 위한 주소를 입력 ex) localhost </li>
+                                    <li>Server name : 식별 가능한 서버의 이름을 입력 </li>
+                                    <li>Server location : Apache Tomcat 설치 경로를 설정 
+                                        <ul>
+                                            <li>JRE(Java Runtime Environment) 선택 : 서버가 사용할 JRE를 선택 (보통 이클립스 기본 JRE 선택) </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>서버 추가 완료</li>
+                            <li>웹애플리케이션 서버(Apache Tomcat) 실행
+                                <ul>
+                                  <li>Server 뷰 > 서버 선택 > 'Start the server' 버튼을 클릭 </li>  
+                                </ul>
+                            </li>
+                            <li>실행 중인 웹애플리케이 확인
+                                <ul>
+                                    <li>브라우저 >  'http://localhost:포트번호/' 접속</li>
+                                    <li>Apache Tomcat 서버에서 실행 중인 웹 애플리케이션을 확인</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </ul>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <div>
+        <h3>객체 : Object(객체의 집합)</h3>
+        <ul>
+            <li>
+                <a href="day5_js/20_object.html">자바스크립트 객체 배열</a>
+            </li>
+            <li>
+                <a href="day6_js/23_addEventListenter.html">자바스크립트 요소 이벤트 핸들러</a>
+            </li>
+            <li>
+                <a href="day6_js/24_evetTarget.html">요소 이벤트 인자 e : e.target 속성 </a>
+            </li>
+            <li>
+                <a href="day6_js/25_date.html">자바스크립트 날짜 Date 객체 </a>
+            </li>
+            <li>
+                <a href="day6_js/26_dateForm.html">자바스크립트 : input date 타입 예제 </a>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <h3>자바스크립트 : form 요소, dom 메소드 </h3>
+        <ul>
+            <li>
+                <a href="day5_js/19_formValid.html">자바스크립트 : form 입력 정보 유효성 검사, 서버로 전송
+                    <br>input 입력 필드, 체크박스 필드, submit() 메소드
+                </a>
+            </li>
+            <li>
+                <a href="day6_js/23_addEventListenter.html">자바스크립트 요소 이벤트 핸들러</a>
+            </li>
+            <li>
+                <a href="day6_js/24_evetTarget.html">요소 이벤트 인자 e : e.target 속성 </a>
+            </li>
+            <li>
+                <a href="day6_js/25_date.html">자바스크립트 날짜 Date 객체 </a>
+            </li>
+            <li>
+                <a href="day6_js/26_dateForm.html">자바스크립트 : input date 타입 예제 </a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>날짜 형식 input 예제</h3>
+
+    <hr>
+
+    <!-- document.forms[0] :  form(document 객체의 서브 객체 ) 의 0번 객체-->
+    <form action="">
+        <!-- 동기 방식 서버-클라이언트 동작에서만 form 태그 사용 -->
+        <label for="night">숙박일수</label>
+        <select name="days" id="night">
+            <option value="0">선택</option>
+            <option value="1">1박</option>
+            <option value="2">2박</option>
+            <option value="3">3박</option>
+            <option value="4">4박</option>
+        </select>
+        <br>
+
+        <label for="enterDate">체크인 날짜 : </label>
+        <input type="date" name="start" id="enterDate"><br>
+        <label for="outDate">체크아웃 날짜 : </label>
+        <input type="date" name="end" id="outDate" disabled><br> 
+        <!-- input disable 속성 : 필드 비활성화 속성.  -->
+        <br>
+    </form>
+
+    <form action="">
+
+    </form>
+
+    <script>
+        // 18,19번은 입력요소를 가져올 때 querySelector 사용 : 선택자 연습 예제
+        //form 은 document 하위 객체입니다. 여러 form 을 가질 수 있으므로
+        //      배열 forms를 이용하여 입력 요소값을 가져올 수 있다
+        const night = document.forms[0].days        // days : name 속성의 값 
+        const start = document.forms[0].start
+        const end = document.forms[0].end
+
+        //입실날짜를 오늘 날짜로 합니다
+        // ㄴ new Date() 날짜 타입 으로 변경
+        // type = date 요소 value 패턴 : yyyy-mm-dd 
+        start.value = '2024.2.16'
+
+        //이벤트 리스너 
+
+        //날짜를 전달하면 yyyy-mm-dd 패턴 문자열로 리턴해 주는 함수
+        function dateFormat(vdate) { // vdate : 날짜 타입 인자
+
+            const year = vdate.getFullYear()
+            const month = (vdate.getMonth() + 1).toString().padStart(2,'0') //문자열을 무조건 2개 문자로 합니다. 부족하면 앞에 0으로 채우기
+            const day = vdate.getDate()
+
+            // console.log( [year, month, day].join('-'))
+
+            return [year, month, day].join('-')
+        }
+
+        // dateFormat(new Date())
+        
+        //이벤트 리스너(핸들러)
+        document.getElementById('night').addEventListener('change', fn_set_end_date)
+
+        // 두번째 인자 콜백함수 : () 사용하지 않음
+        //                          ㄴ 호출 형식. 함수 이름(식별자) 전달 
+        document.getElementById('enterDate').addEventListener('change', fn_set_end_date)
+
+        // 콜백 함수
+        // ㄴ let chagneEndDate = function() {} 
+        function fn_set_end_date() {
+            // console.log(start.value)
+            let end_date = new Date(start.value)
+
+            night.value = night.value == '' ? 0 : night.value 
+            end_date.setDate(end_date.getDate() + Number(night.value))
+
+            end.value = dateFormat(end_date)
+        }
+
+        // 입실날짜 요소 min, max 속성을 사용해 날짜의 범위 제한
+        // min 오늘 날짜
+        // max : input 태그의 속성, +3 month로 셋팅 
+        // 오늘날짜로 시작일 필드 초기화
+        let fn_init_date = function() {
+            let today = new Date()
+            start.value = dateFormat(today)
+            start.min = start.value
+
+            today.setMonth(today.getMonth() + 3)
+            start.max = dateFormat(today)
+        } 
+
+        fn_init_date()
+
+    </script>
+</body>
+</html>
