@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!-- 작성자 : 조하연   -->
+
+<head>
+  <meta charset="UTF-8">
+  <title>NC Dinos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    
+    <div class="title_logo">
+      <ul>
+        <li>
+          <div>
+            <img src="img-embelm-128@2x.png">
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>회원가입</h3>
+            <p>티켓예매, 포인트 등 다양한 혜택을 누리세요.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <form action="welcome.html">
+        <ul>
+          <div class="item_block">
+
+            <div class="item_text">
+              <li><span class="title_text">아이디(필수)</span></li>
+            </div>
+            <li>
+              <input type="text" class="input_item" name="member_id" id="member_id" placeholder="아이디를 입력해 주세요" required>
+              <button type="button" class="btn btn_gray btn_width75" name="btn_check_id" id="btn_check_id">중복확인</button>
+            </li>
+          </div>
+          
+          <div class="item_block">
+            <div class="item_text">
+              <li><span class="title_text">비밀번호(필수)</span></li>
+              <li><span class="title_text sub_text">비밀번호는 6글자 이상입니다.</span></li>
+            </div>
+            <li>
+              <input type="password" class="input_item" name="member_password" id="member_password" placeholder="비밀번호를 입력해 주세요." required>
+            </li>
+          </div>
+
+          <div class="item_block">
+            <div class="item_text">
+              <li><span class="title_text">비밀번호 확인</span></li>
+            </div>
+            <li>
+              <input type="password" class="input_item" name="check_password" id="check_password" placeholder="비밀번호를 다시 한번 입력해 주세요.">
+            </li>
+          </div>
+
+          <div class="item_block">
+            <div class="item_text">
+              <li><span class="title_text">이름(필수)</span></li>
+            </div>
+            <li>
+              <input type="text" class="input_item" name="member_name" id="member_name" placeholder="이름" required>
+            </li>
+          </div>
+          
+          <div class="item_block">
+            <div class="item_text">
+              <li><span class="title_text">생년월일(필수)</span></li>
+            </div>
+            <li>
+              <input type="text" class="input_item" name="birth_day" id="birth_day" placeholder="yyyy-mm-dd" required>
+            </li>
+          </div>
+
+          <div class="item_block">
+            <div class="item_text">
+              <li><span class="title_text">성별(필수)</span></li>
+            </div>
+            <li>
+                <input type="radio" class="radio_item" name="member_gender" id="member_gender_M" value="M">
+                <label for="member_gender_M">남자</label>
+
+                <input type="radio" class="radio_item" name="member_gender" id="member_gender_W" value="W">
+                <label for="member_gender_W">여자</label>
+
+            </li>
+          </div>
+
+          <div class="item_block">
+            <div class="item_text">
+              <li><span class="title_text">전화번호(필수)</span></li>
+            </div>
+            <li>
+              <input type="text" class="input_item" name="member_contact" id="member_contact" value="" placeholder="연락처" required>
+            </li>
+          </div>
+
+          <div class="item_block">
+            <div class="item_text">
+              <li><span class="title_text">이메일</span></li>
+            </div>
+            <li>
+              <input type="email" class="input_item" name="member_email" id="member_email" value="" placeholder="이메일을 입력해 주세요">
+            </li>
+          </div>
+
+          <div class="item_block">
+            <div class="item_text">
+              <li><span class="title_text">주소</span> </li>
+            </div>
+            <li>
+              <input type="text" class="input_item" name="post_code" id="post_code" value="" placeholder="우편번호">
+              <button type="button" class="btn btn_gray btn_width75" name="btn_sch_addr" id="btn_sch_addr">검색</button>
+            </li>
+            <li>
+              <input type="text" class="input_item" name="addr1" id="addr1" value="" placeholder="주소">
+            </li>
+            <li>
+              <input type="text" class="input_item" name="addr2" id="addr2" value="" placeholder="주소 검색 후 상세주소를 입력해 주세요">
+            </li>
+          </div>
+
+          <div class="item_block">
+            <div class="item_text">
+              <li><span class="title_text">선호팀</span></li>
+            </div>
+            <li>
+              <select class="input_item option_item" name="favor_team" id="favor_team">
+                <option value="">선택</option>
+                <option value="NC">NC 다이노스</option>
+                <option value="LG">LG 트윈스</option>
+                <option value="SSG">SSG 랜더스</option>
+                <option value="KIA">KIA 타이거즈</option>
+                <option value="KT">KT 위즈</option>
+                <option value="SS">삼성 라이온스</option>
+                <option value="LT">롯데 자이언츠</option>
+                <option value="HH">한화 이글스</option>
+                <option value="KU">키움 히어로즈</option>
+                <option value="DS">두산 베어스</option>
+              </select>
+            </li>
+          </div>
+        </ul>
+
+        <div class="btn_block">
+          <button type="button" class="btn btn_gray btn_width100" name="btn_join" id="join">회원가입</button>
+        </div>
+      
+      </form>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

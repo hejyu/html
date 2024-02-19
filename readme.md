@@ -34,6 +34,12 @@
             7. 실행 중인 웹애플리케이션 확인
                 - 브라우저 > 'http://localhost:포트번호/' 접속
                 - Apache Tomcat 서버에서 실행 중인 웹 애플리케이션 확인
+            8. lombok.jar 설치 과정
+                - 이클립스를 종료
+                    - Specify location... 클릭 >  eclipse.exe 설치 경로 선택 후 확인 > Install/Update 클릭 > 나가기
+                - exclipse.ini 파일 > lombok.jar 폴더 경로 생성 확인
+                    - -javaagent:C:\Class231228\etc\eclipse\lombok.jar 경로 생성 확인
+                - 이클립스 폴더 부모 폴더 중 한글 폴더명이 있는 경우 동작하지 않음
 4. 객체: Object(객체의 집합)
     - [자바스크립트 객체 배열](day5_js/20_object.html)
     - [자바스크립트 요소 이벤트 핸들러](day6_js/23_addEventListenter.html)

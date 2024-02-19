@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+}
+html, body, div, span, ul, li, h2, h3, h4, h6 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+
+/* 작성자 : 조하연  */
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+.container {
+    width: 55rem;
+    margin: 2rem auto;
+}
+
+.content {
+    background-color: #eee;
+    padding: 2rem 2rem;
+}
+
+h3,
+p {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.container > .title_logo {
+    /* 블록요소의 텍스트 컨텐츠를 중앙에 오도록합니다 */
+    display: flex;
+    /* 수직 방향 중앙 */
+    align-items: center;
+    /* 수평 방향 중앙 */
+    justify-content: center;
+
+    text-align: center;
+}
+.btn_block {
+    /* 블록요소의 텍스트 컨텐츠를 중앙에 오도록합니다 */
+    display: flex;
+    /* 수직 방향 중앙 */
+    align-items: center;
+    /* 수평 방향 중앙 */
+    justify-content: center;
+}
+
+.btn {
+    padding: 10px 0px;
+    font-weight: 700;
+    border: 1px solid #ccc;
+}
+
+.btn_width100 {
+    width: 100rem;
+}
+.btn_width75 {
+    width: 75px;
+}
+
+.btn_gray {
+    background-color: lightgray;
+}
+img {
+    height: 10rem;
+}
+
+.title_text {
+    font-weight: 600;
+} 
+
+.input_item {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.option_item {
+    width: 15rem;
+}
+
+ul>div.item_block{
+    margin-bottom: 15px;
+}
+
+.sub_text {
+    font-size: 0.75em;
+}
+
+.item_text {
+    margin-bottom: 8px;
+}
+
+
