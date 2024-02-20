@@ -53,7 +53,7 @@
 2. Libriaries 창 Modulepath, Classpath 중 Classpath 선택
 
     **Classpath 와 Modulepath 개념** 
-    - Modulepath : 
+    - Modulepath : 무조건 하나의 모듈(`프로젝트`)에
     - Classpath : 
 
 
@@ -113,8 +113,9 @@
 2. git init : git 저장소 초기화  > Create Repository 클릭 > Finish
 3. https://github.com/  New Repository 사용할 저장소 만들기
 4. 이클립스 git Prespective 이동 > 프로젝트 선택 > Remotes 디렉토리 선택 마우스 오른쪽 클릭 > Create Remote > 
-![alt text](image.png)
 
+![alt text](image.png)
+password : 발급받은 토큰 입력
 
 
 ![alt text](image-1.png)
