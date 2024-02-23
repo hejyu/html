@@ -99,10 +99,11 @@
 3. https://github.com/  New Repository 사용할 저장소 만들기
 4. 이클립스 git Prespective 이동 > 프로젝트 선택 > Remotes 디렉토리 선택 마우스 오른쪽 클릭 > Create Remote > 
 
+
 ![alt text](image.png)
+
+
 password : 발급받은 토큰 입력
-
-
 ![alt text](image-1.png)
 
 
@@ -122,11 +123,35 @@ password : 발급받은 토큰 입력
 - <% %> : 자바 코드 작성 할 수 있는 태그  
 - `request` `response` `session` `out` 객체 제공 
 
+#### HTTP 요청 파라미터 전달
 
+#### JSP 파일의 형식
 
+#### JSTL 태그(반복, 조건, 서식, 함수)
 
+#### 애트리뷰트와 EL
 
+#### request 객체의 속성값 
+    - 요청 URL
+    - Context Path
+    - 서버와 클라이언트
+    - ip
 
+#### 서블릿 클래스의 형식
+
+#### forward : 서버측에서 웹페이지 전환하기 
+    - 사용자 요청을 전달하므로 애트리뷰트 값을 jsp 로 보낼 수 있음.
+    - forward 에서 사용한 객체 RequestDispatcher : jsp의 pageContext 역할
+
+#### Redirect : 서버측에서 클라이언트가 다른 url을 재요청하도록 함
+
+#### 요청 방식(메소드) GET 과 POST 
+
+#### 애트리뷰트 : 서버에서 저장하는 Object 타입 데이터
+- 스콥(Scope) , 사용 범위가 있습니다.
+- 우리가 사용해 본 스콥 2개 : 현재 웹페이지(pageContext), 요청(request)
+- 저장은 스콥객체.setAttribute()
+- 읽기는 스콥객체.getAttribute()
 
 
 
@@ -173,8 +198,121 @@ password : 발급받은 토큰 입력
 - 일반적으로 service() 만 사용하거나 또는 doGet() 과 doPost() 만 사용합니다.
 
 
+|서블릿|기능|요청메소드|서블릿 코드|응답JSP|
+|---|---|---|---|---|
+||고객전체조회||
+
+A           GET     dispatcher.forward(req, resp)       customers.jsp
+
+b       상품 전체조회   GET     dispatcher.forward(req, resp)       products.jsp
+c       주문 전체조회   GET     dispatcher.forward(req, resp)       buys.jsp
+d       고객등록-화면   GET     dispatcher.forward(req, resp)       register.jsp
+d          저장        post     response.sendRedirecct(url)        없음- url 필요
+e        상품등록-화면  get     dispatcher.forward(req, resp)       productReg.jsp
+           저장        post     response.sendRedirecct(url)        없음- url 필요
 
 
+
+Q. abc 서블릿 get 과 de 서블릿의 get 요청 메소드에서 다른 점을 찾아보세요.
+    - request.setAttribute("list",list)
+    - 화면에서 보여줄 데이터를 저장하는 경우에는 반드시 forward 해야합니다.
+
+    - 1) request.getAttribute('list') * 리턴타입이 Object
+    - 2) Object 타입을 알아서 저장된 형식(List<VO>)
+
+### Mybatis Framework 마이티스 프레임워크
+- SQL 파라미터와 자바 Object를 맵핑 라이브러리
+- JDBC로 처리하는 코드와 파라미터 설정과 결과 코드를 대신 처리해준다.
+- XML : Markup 언어, 태그를 사용하는 언어, 
+HTML과 같이 태그를 사용하면서 데이터를 저장한다.
+- 설정, 데이터 저장 목적으로 사용된다
+- ex)  톰캣의 서버 port 설정은 결국은 server.xml 파일 내용
+
+- `mybatis-config.xml`  : 데이터베이스 접속 환경 설정파일
+    
+    1) environments : 데이터베이스 Connection 환경셋팅
+    ```xml
+        <!-- 데이터베이스 서버 배포 개발, 테스트, 프로덕션 환경  설정-->
+        <!--  -->
+        <properties resource="mybatis/db.properties"/>
+
+        <environments default="development"> 
+            <environment id="development"> 
+                <transactionManager type="JDBC"/>
+                    <!-- 데이터베이스 연결 풀 DBCP 설정 
+                        db연결 정보가 바뀔때 properties 파일의 값만 변경하거나 파일을 교체하면 되므로 관리가 쉬움
+                    -->
+                    <dataSource type="POOLED">  
+                        <!-- 
+                            DataBase Connection Pool(저장소)
+                            : 커넥션 객체를 여러개 생성해서 저장하고
+                                사용자 요청이 있을때 풀에서 객체를 할당합니다
+                                요청에 대한 응답이 완료되면 다시 풀에 반환.
+                                풀 관리는 톰캣에서 하고 구현시는 dataSource 객체를 설정해 주면 됩니다.   
+                        -->
+                        <property name="driver" value="${driver}"/>
+                        <property name="url" value="${url}"/>
+                        <property name="username" value="${username}"/>
+                        <property name="password" value="${password}"/>
+                    </dataSource>
+            </environment>
+        </environments>
+    ```
+
+    2) typeAliases : 마이바티스 SQL xml 타입 엘리어스 셋팅 
+    ```xml
+        <!-- 타입 별칭 설정하기 -->
+        <!-- type = "Object 위치"  alias="사용할 별칭"-->
+        <typeAliases>
+                <typeAlias type="day4.mybatis.dto.BuyDto" alias="BuyDto"/>
+                <typeAlias type="day4.mybatis.dto.CustomerDto" alias="CustomerDto"/>
+                <typeAlias type="day4.mybatis.dto.ProductDto" alias="ProductDto"/>
+                <typeAlias type="day4.mybatis.dto.CustomerBuyDto" alias="CustomerBuyDto"/>
+        </typeAliases>
+    ```
  
+    3) mappers : 마이바티스 Mapper XML 위치 설정
+    ```xml
+        <mappers>
+            <!-- JDBC로 처리하는 상당부분의 코드와 
+            파라미터 설정 및 조회결과와 dto(== vo,bean)객체 매핑을 해줍니다. 
+            -->
+            <!-- 실행할 SQL 쿼리 저장한 파일. mapper 파일위치와 파일명 오류나지 않도록 확인!! 테이블컬럼과 자바객체 변수(프로퍼티) 를 바로 매핑. -->
+            <mapper resource="mybatis/buys.xml"/>
+            <mapper resource="mybatis/customer.xml"/>
+            <mapper resource="mybatis/product.xml"/>
+            <!-- resource 속성일 때 파일의 패키지명은 . 아니고 / 기호 사용합니다. sql mapper 파일은 여러개 사용될 수 있습니다. --> 	
+        </mappers>
+    ```
+ - `SqlSessionBean.java` :  `mybatis-config.xml` 파일을 불러와 SQL xml 파일 읽어오는 파일
+ ```java
+/*
+ * Mybatis 라이브러리 기본 제공 객체
+ *  - SqlSession : 데이터베이스 세션을 생성하는 객체 
+ */
+public class SqlSessionBean {
+
+	public static SqlSessionFactory sqlSessionFactory;
+
+	static {
+		String resource = "mybatis/mybatis-config.xml";     //mybatis 설정파일
+		InputStream inputStream=null;			            //파일을 읽기위한 입력 스트림
+	
+		try {
+			inputStream = Resources.getResourceAsStream(resource);   //리소스 파일 자원 읽어옴
+		}catch(IOException e) {
+			System.out.println("mybatis 설정 파일 읽기 오류입니다.");
+		}
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);   
+
+	}
+	
+	// SqlSessionFactory 객체 
+    // :dao에 필요한 Connection, PreparedStatement 자원 생성
+	public static SqlSessionFactory getSessionFactory() {    
+		return sqlSessionFactory;
+	}
+}
+ ```
 
 
