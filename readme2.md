@@ -200,28 +200,17 @@ password : 발급받은 토큰 입력
 
 |서블릿|기능|요청메소드|서블릿 코드|응답JSP|
 |---|---|---|---|---|
-||고객전체조회||
+|CustomerServlet.java|고객전체조회|GET|dispatcher.forward(req, resp)|customers.jsp|
+|ProductServlet.java|상품전체조회|GET|dispatcher.forward(req, resp)|products.jsp|
+|BuyServlet.java|주문전체조회|GET|dispatcher.forward(req, resp)|buys.jsp|
+|Register.java|고객등록-화면|GET|dispatcher.forward(req, resp)|register.jsp|
+|Register.java|고객등록-저장|POST|response.sendRedirecct(url)|X, url 필요|
+|ProductRegister.java|상품등록-화면|GET|dispatcher.forward(req, resp)|productReg.jsp|
+|ProductRegister.java|상품등록-저장|POST|response.sendRedirecct(url)|X, url 필요|
 
-A           GET     dispatcher.forward(req, resp)       customers.jsp
-
-b       상품 전체조회   GET     dispatcher.forward(req, resp)       products.jsp
-c       주문 전체조회   GET     dispatcher.forward(req, resp)       buys.jsp
-d       고객등록-화면   GET     dispatcher.forward(req, resp)       register.jsp
-d          저장        post     response.sendRedirecct(url)        없음- url 필요
-e        상품등록-화면  get     dispatcher.forward(req, resp)       productReg.jsp
-           저장        post     response.sendRedirecct(url)        없음- url 필요
-
-
-
-Q. abc 서블릿 get 과 de 서블릿의 get 요청 메소드에서 다른 점을 찾아보세요.
-    - request.setAttribute("list",list)
-    - 화면에서 보여줄 데이터를 저장하는 경우에는 반드시 forward 해야합니다.
-
-    - 1) request.getAttribute('list') * 리턴타입이 Object
-    - 2) Object 타입을 알아서 저장된 형식(List<VO>)
 
 ### Mybatis Framework 마이티스 프레임워크
-- SQL 파라미터와 자바 Object를 맵핑 라이브러리
+- 자바코드와 관계형 데이터베이스가 상호작용 하는 방식을 관리하는데 도움을 주는 `자바 프레임워크`
 - JDBC로 처리하는 코드와 파라미터 설정과 결과 코드를 대신 처리해준다.
 - XML : Markup 언어, 태그를 사용하는 언어, 
 HTML과 같이 태그를 사용하면서 데이터를 저장한다.
@@ -239,17 +228,7 @@ HTML과 같이 태그를 사용하면서 데이터를 저장한다.
         <environments default="development"> 
             <environment id="development"> 
                 <transactionManager type="JDBC"/>
-                    <!-- 데이터베이스 연결 풀 DBCP 설정 
-                        db연결 정보가 바뀔때 properties 파일의 값만 변경하거나 파일을 교체하면 되므로 관리가 쉬움
-                    -->
-                    <dataSource type="POOLED">  
-                        <!-- 
-                            DataBase Connection Pool(저장소)
-                            : 커넥션 객체를 여러개 생성해서 저장하고
-                                사용자 요청이 있을때 풀에서 객체를 할당합니다
-                                요청에 대한 응답이 완료되면 다시 풀에 반환.
-                                풀 관리는 톰캣에서 하고 구현시는 dataSource 객체를 설정해 주면 됩니다.   
-                        -->
+                    <dataSource type="POOLED"> 
                         <property name="driver" value="${driver}"/>
                         <property name="url" value="${url}"/>
                         <property name="username" value="${username}"/>
@@ -280,34 +259,35 @@ HTML과 같이 태그를 사용하면서 데이터를 저장한다.
         </mappers>
     ```
  - `SqlSessionBean.java` :  `mybatis-config.xml` 파일을 불러와 SQL xml 파일 읽어오는 파일
- ```java
-/*
- * Mybatis 라이브러리 기본 제공 객체
- *  - SqlSession : 데이터베이스 세션을 생성하는 객체 
- */
-public class SqlSessionBean {
 
-	public static SqlSessionFactory sqlSessionFactory;
+    ```java
+    /*
+    * Mybatis 라이브러리 기본 제공 객체
+    *  - SqlSession : 데이터베이스 세션을 생성하는 객체 
+    */
+    public class SqlSessionBean {
 
-	static {
-		String resource = "mybatis/mybatis-config.xml";     //mybatis 설정파일
-		InputStream inputStream=null;			            //파일을 읽기위한 입력 스트림
-	
-		try {
-			inputStream = Resources.getResourceAsStream(resource);   //리소스 파일 자원 읽어옴
-		}catch(IOException e) {
-			System.out.println("mybatis 설정 파일 읽기 오류입니다.");
-		}
-		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);   
+        public static SqlSessionFactory sqlSessionFactory;
 
-	}
-	
-	// SqlSessionFactory 객체 
-    // :dao에 필요한 Connection, PreparedStatement 자원 생성
-	public static SqlSessionFactory getSessionFactory() {    
-		return sqlSessionFactory;
-	}
-}
- ```
+        static {
+            String resource = "mybatis/mybatis-config.xml";     //mybatis 설정파일
+            InputStream inputStream=null;			            //파일을 읽기위한 입력 스트림
+        
+            try {
+                inputStream = Resources.getResourceAsStream(resource);   //리소스 파일 자원 읽어옴
+            }catch(IOException e) {
+                System.out.println("mybatis 설정 파일 읽기 오류입니다.");
+            }
+            sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);   
+
+        }
+        
+        // SqlSessionFactory 객체 
+        // :dao에 필요한 Connection, PreparedStatement 자원 생성
+        public static SqlSessionFactory getSessionFactory() {    
+            return sqlSessionFactory;
+        }
+    }
+    ```
 
 
