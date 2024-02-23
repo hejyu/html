@@ -259,7 +259,7 @@ HTML과 같이 태그를 사용하면서 데이터를 저장한다.
         </environments>
     ```
 
-    2) typeAliases : 마이바티스 SQL xml 타입 엘리어스 셋팅 
+    2) typeAliases : 마이바티스 SQL xml 파일 사용 `Object파일경로`, `사용할 별칭` 셋팅 
     ```xml
         <!-- 타입 별칭 설정하기 -->
         <!-- type = "Object 위치"  alias="사용할 별칭"-->
@@ -274,14 +274,9 @@ HTML과 같이 태그를 사용하면서 데이터를 저장한다.
     3) mappers : 마이바티스 Mapper XML 위치 설정
     ```xml
         <mappers>
-            <!-- JDBC로 처리하는 상당부분의 코드와 
-            파라미터 설정 및 조회결과와 dto(== vo,bean)객체 매핑을 해줍니다. 
-            -->
-            <!-- 실행할 SQL 쿼리 저장한 파일. mapper 파일위치와 파일명 오류나지 않도록 확인!! 테이블컬럼과 자바객체 변수(프로퍼티) 를 바로 매핑. -->
             <mapper resource="mybatis/buys.xml"/>
             <mapper resource="mybatis/customer.xml"/>
             <mapper resource="mybatis/product.xml"/>
-            <!-- resource 속성일 때 파일의 패키지명은 . 아니고 / 기호 사용합니다. sql mapper 파일은 여러개 사용될 수 있습니다. --> 	
         </mappers>
     ```
  - `SqlSessionBean.java` :  `mybatis-config.xml` 파일을 불러와 SQL xml 파일 읽어오는 파일
