@@ -96,18 +96,52 @@
 ### git 연동 
 1. directory 마우스 오른쪽 클릭 > Team > Share Project
 2. git init : git 저장소 초기화  > Create Repository 클릭 > Finish
+
+    ![alt text](image-3.png)
+
+
+    ![alt text](image-4.png)
+
+    ![alt text](image-5.png)
+
+
 3. https://github.com/  New Repository 사용할 저장소 만들기
-4. 이클립스 git Prespective 이동 > 프로젝트 선택 > Remotes 디렉토리 선택 마우스 오른쪽 클릭 > Create Remote > 
 
-
-![alt text](image.png)
-
-
-password : 발급받은 토큰 입력
-![alt text](image-1.png)
-
-
+4. 이클립스 git Prespective 이동 > 프로젝트 선택 > Remotes 디렉토리 선택
     
+    마우스 우 클릭 > Create Remote..
+    
+    ![alt text](image-6.png) 
+
+5. Congiure fetch 선택 > Create 클릭
+
+    ![alt text](image-7.png)
+
+    ![alt text](image-8.png)
+
+6. Change 클릭
+
+    ![alt text](image-9.png)
+
+7. URI에 git 사이트 repository 주소 붙여넣기 > Finish 클릭
+
+    ![alt text](image-10.png)
+    
+    - 선행 단계에 github 계정 토큰 발급 과정이 있음
+        
+        password 에 발급받은 토큰 입력
+        ![alt text](image-1.png)
+
+8. Save and Fetch 클릭
+
+    ![alt text](image-11.png)
+
+- 이클립스 Git Push 하는 법
+    - Git perspective 이동
+    - Remote 클릭 > origin 선택 > pull(초록색) 클릭 > 마우스 우클릭 > Fetch 선택
+    - 디렉토리 선택 > pull.. 클릭 > Finish 클릭
+    
+    ![alt text](image-12.png)
 
 
 ### 동적 웹 프로젝트 폴더 구조
@@ -301,7 +335,12 @@ HTML과 같이 태그를 사용하면서 데이터를 저장한다.
 - Servlet : Client의 요청을 처리하고 응답하는 서버
 - JSP : 서버에서 보낸 데이터를 받을 수 있는 페이지
 
-### MVC
+### MVC 2
+- web.xml
+    - 정적리소스 주소와 웹서블릿 주소 분리
+    - HTTP error-code 404 페이지 설정
+- Servlet
+    
 
 ### 게시판 구현
 
