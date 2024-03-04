@@ -115,8 +115,6 @@
 
 5. Congiure fetch 선택 > Create 클릭
 
-    ![alt text](image-7.png)
-
     ![alt text](image-8.png)
 
 6. Change 클릭
