@@ -8,6 +8,7 @@
 
 
 ## 객체 Object(객체의 집합)
+- [객체의 배열로 만든 시간표 예제 코드](day5_js/21_object_schedule.html)
 - [자바스크립트 객체 배열](day5_js/20_object.html)
 - [자바스크립트 요소 이벤트 핸들러](day6_js/23_addEventListenter.html)
 - [요소 이벤트 인자 e: e.target 속성](day6_js/24_evetTarget.html)

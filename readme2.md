@@ -137,19 +137,25 @@
     ![alt text](image-11.png)
 
 - 이클립스 Git Push 하는 법
+
     - Git perspective 이동
+
     - Remote 클릭 > origin 선택 > pull(초록색) 클릭 > 마우스 우클릭 > Fetch 선택
+
     - 디렉토리 선택 > pull.. 클릭 > Finish 클릭
     
-    ![alt text](image-12.png)
+        ![alt text](image-12.png)
 
 
 ### 동적 웹 프로젝트 폴더 구조
-    src >   main  > java : java 파일
-            webapp : html, css, js, jsp 파일, 외부 라이브러리(jar)   
-                ㄴ 정적 자원 : html,css, js, 이미지   => assets 폴더에 저장 
-                ㄴ 동적 자원 : jsp   
-                ㄴ 웹용 라이브러리 : WEB-INF > lib => ojdbc.jar, lombok.jar
+   
+   `src` >   `main`  > `java` : java 파일
+            
+    `src` >   `main`  >  `webapp` : html, css, js, jsp 파일, 외부 라이브러리(jar)   
+
+ㄴ 정적 자원 : html,css, js, 이미지   => assets 폴더에 저장 
+ㄴ 동적 자원 : jsp   
+ㄴ 웹용 라이브러리 : WEB-INF > lib => ojdbc.jar, lombok.jar
 
 ### JSP (Java Server Page)
 - 발전 순서 : applet(애블릿) > servlet(서블릿) > JSP
@@ -304,7 +310,7 @@ HTML과 같이 태그를 사용하면서 데이터를 저장한다.
         public static SqlSessionFactory sqlSessionFactory;
 
         static {
-            String resource = "mybatis/mybatis-config.xml";     //mybatis 설정파일
+            String resource = "mybatis/mybatis-config.xml";     //mybatis 설정파일 org/example/demo/mybatis/mybatis-config
             InputStream inputStream=null;			            //파일을 읽기위한 입력 스트림
         
             try {
@@ -347,5 +353,45 @@ HTML과 같이 태그를 사용하면서 데이터를 저장한다.
 ### 파일 업로드 구현
 
 ## Maven : 빌드 도구
+### 빌드
+
+> 컴파일부터 시작해서 최종 소프트웨어 산출물 생성
+- 최종산출물은 보통 압축파일 형태(패키징-포장)
+
+> 종류
+- .jar : 일반적인 자바 패키징 애플리케이션
+- .war 
+
+### 빌드 도구 
+**1. Maven** 
+
+- 자바 프로젝트를 관리하는 툴
+- 자바 소스를 컴파일하고 패키지해서 deploy까지 자동화 해준다.
+
+    > 미리 작성된 pom.xml 파일을 이용하여 라이브러리를 자동으로 다운로드하거나 프로젝트를 빌드해줌.
+
+- **Maven - 프로젝트 빌드 자동화 툴 프로젝트에 추가**    
+    1. New > Product > Dynamic Web Project 클릭 > web.xml 생성 체크
+
+        ![alt text](image-13.png)
+
+    1. 프로젝트 우클릭 > Configure >Convert to Maven 클릭 >Finish
+
+
+    1. `pom.xml` 의존성 추가 파일
+        - **로컬 의존성 저장소 경로 : C:\Users\Administrator\\.m2\repository**
+        - **추가한 의존성 다시 불러오기 : 프로젝트 우클릭 > Maven > Update Project**
+
+- **Gradle**
+    - 특징 : 의존성을 추가하는 방식이 maven 형식보다 짧다
 
 ## 자바스크립트 비동기 통신
+> **동기식 통신 : 요청과 그에 대한 응답이 오고 그 이후에는 새로운 요청을 보낼 수 있는 방식**
+
+- 서버와 통신을 하면 화면이 바뀐다. 화면은 서버가 보내는 응답이고 
+그래서 응답을 받을 때까지 대기하는 시간이 오래 걸리기도 한다.
+
+> **비동기식 통신 : 서버가 받은 요청을 응답을 기다리지 않고 새로운 요청을 보낼 수 있는 방식**
+- 대표적으로 서버는 **rest api 방식**으로 데이터(응답)만 서버에 보내는 방식으로 동작한다.
+
+- 관련 : **SPA(Single Page Application) 구현 방식**
