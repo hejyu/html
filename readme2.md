@@ -147,15 +147,13 @@
         ![alt text](image-12.png)
 
 
-### 동적 웹 프로젝트 폴더 구조
-   
-   `src` >   `main`  > `java` : java 파일
-            
-    `src` >   `main`  >  `webapp` : html, css, js, jsp 파일, 외부 라이브러리(jar)   
+### 동적 웹 프로젝트 폴더 구조   
+`src` >   `main`  > `java` : java 파일        
+`src` >   `main`  >  `webapp` : html, css, js, jsp 파일, 외부 라이브러리(jar)
 
-ㄴ 정적 자원 : html,css, js, 이미지   => assets 폴더에 저장 
-ㄴ 동적 자원 : jsp   
-ㄴ 웹용 라이브러리 : WEB-INF > lib => ojdbc.jar, lombok.jar
+- 정적 자원 `assets 폴더` : `html,css, js, 이미지, 동영상` 에 저장 `
+  
+- 동적 자원 `웹용 라이브러리` : `WEB-INF` > `lib, jsp`
 
 ### JSP (Java Server Page)
 - 발전 순서 : applet(애블릿) > servlet(서블릿) > JSP
@@ -361,6 +359,12 @@ HTML과 같이 태그를 사용하면서 데이터를 저장한다.
 > 종류
 - .jar : 일반적인 자바 패키징 애플리케이션
 - .war 
+
+### Jackson 라이브러리 메소드
+- **자바 객체 json 문자열로 변환** : **.writeValueAsString**
+
+- **json 문자열을 자바 객체로 변환** : **.readValue**
+
 
 ### 빌드 도구 
 **1. Maven** 
