@@ -20,19 +20,22 @@
 - **Tema - Pull**
     - 프로젝트를 업데이트
 
-## 자신의 git 저장소로 푸쉬
-    1. DemoProejct 디렉토리 우클릭 > Open git bash Here
+## 자신의 git Repository로 푸쉬
     
-    1. git remote -v 
+1. DemoProejct 디렉토리 우클릭 > Open git bash Here
+
+1. git remote -v 
     - 연결된 git 저장소 확인
-        
-    1. git remote add uprepo https://github.com/hejyu/DemoProject.git 
+    
+1. git remote add uprepo https://github.com/hejyu/DemoProject.git 
     - uprepo 저장소로 현재 git 주소를 자신의 git 주소로 연결
 
-    1. git remote -v
+1. git remote -v
     - 자신의 git 저장소 추가된 것 확인 
 
-    1. git push uprepo main
+1. git push uprepo main
     - uprepo 저장소의 main 브랜치로 프로젝트 푸쉬
 
     ![alt text](image-15.png)
+
+## git 브랜치 생성
