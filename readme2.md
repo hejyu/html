@@ -1,4 +1,4 @@
-# `HTTP` `JSP` `Servlet` 수업 내용
+# `HTTP` `JSP` `Servlet` `XHR비동기통신`수업 내용
 
 
 ## 서버-클라이언트
@@ -363,6 +363,15 @@ HTML과 같이 태그를 사용하면서 데이터를 저장한다.
 
 - **json 문자열을 자바 객체로 변환** : **.readValue**
 
+### XHR 비동기 통신 메소드
+- **직렬화**
+    - **자바스크립트 객체를 json 문자열로 변환 : JSON.stringify**
+
+- **역직렬화**
+    - **json문자열을 자바스크립트 객체의 배열로 변환** : **JSON.parse(xhr.response)**
+
+### 
+
 
 ### 빌드 도구 
 **1. Maven** 
@@ -397,3 +406,46 @@ HTML과 같이 태그를 사용하면서 데이터를 저장한다.
 - 대표적으로 서버는 **rest api 방식**으로 데이터(응답)만 서버에 보내는 방식으로 동작한다.
 
 - 관련 : **SPA(Single Page Application) 구현 방식**
+
+> **비동기 통신 객체  XHR (XMLHttpRequest)로 인터페이스 개발 예시**
+
+```javascript
+const selectAll = function() {
+	const xhr = new XMLHttpRequest()		// 비동기 통신 객체 생성
+	xhr.open('GET', 'api/buy/list')			// 전송 보낼 준비 (url 과 메소드)
+	xhr.send()								// 요청 전송
+	xhr.onload = function() {				// 요청에 대한 응답을 받았을 때 onload 이벤트가 생긴다. onload 핸들러 함수
+		if(xhr.status === 200 || xhr.status === 201) { // readyState Done
+			//json 문자열 웅답을 
+            //자바스크립트 배열 객체로 변환하여 
+            //요소 하나씩을 ele 변수에 대입한 후
+			//화면에 값을 태그요소에 출력하는 코드
+            
+            const arr = JSON.parse(xhr.response)		// 응답받은 json문자열 {} -> 자바스크립트 객체의 배열 [] 로 변환(역직렬화)
+
+			const list = document.querySelector('#list')
+			list.innerHTML=''
+			arr.forEach((ele,index) => {
+				const li = document.createElement('li')
+				const ul = document.createElement('ul')
+				ul.className = 'row'
+				ul.innerHTML = 
+				`<li>${index+1}</li>
+				<li>${ele.customid}</li>
+				<li>${ele.pcode}</li>
+				<li>${ele.quantity}</li>
+				<li style=\"text-align: right; \">${ele.buy_date}</li>`
+				
+				li.appendChild(ul)
+				list.appendChild(li)
+			})
+					
+		} else {
+		 	console.log('error 1 ', xhr.status)
+		 	console.log('error 2 ', xhr.response)
+		}
+	}
+}
+
+
+```
