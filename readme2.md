@@ -165,6 +165,10 @@
 
 #### JSTL 태그(반복, 조건, 서식, 함수)
 
+```jsp
+<fmt:formatDate value="${vo.createdAt }" pattern="yyyy-MM-dd" var="createdAt"/> var : value  value="${vo.createdAt }" 저장(출력이 아님.)
+```
+
 #### 애트리뷰트와 EL
 
 #### request 객체의 속성값 
