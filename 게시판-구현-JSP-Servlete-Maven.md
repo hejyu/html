@@ -162,6 +162,17 @@ if('${user.userid}'==''){
     location.href='write?page=${paging.currentPage }'
 }
 ```
+```java
+// LoginViewController.java
+```
+```javascript
+// index.jsp
+```
+```jsp
+<!-- write.jsp 글쓰기 페이지로 이동됨. -->
+
+```
+
 
 ```jsp
 header.jsp
