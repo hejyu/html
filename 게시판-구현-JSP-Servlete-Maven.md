@@ -6,17 +6,17 @@
 
 ## 2. 로컬 작업디렉토리 생성
 - **git clone : https://github.com/kimsohee-around/DemoProject.git**   
-    1. git perspective 이동 > 초록색 아이콘 클릭 
-    1. DemoProject 디렉토리 선택 > WorkingTree 우클릭 > Import Project
+1. git perspective 이동 > 초록색 아이콘 클릭 
+1. DemoProject 디렉토리 선택 > WorkingTree 우클릭 > Import Project
 
 ## 3. 프로젝트 개발 환경 셋팅
 - **톰캣 서버 추가**
-    1. Build Path > Libraries > Classpath > Add Library ... > Server Runtime 추가
+1. Build Path > Libraries > Classpath > Add Library ... > Server Runtime 추가
 
-- **Tema - Fetch from origin**
+- **Team - Fetch from origin**
     - 변경점을 확인한다
 
-- **Tema - Pull**
+- **Team - Pull**
     - 프로젝트를 업데이트
 
 ## 4. 소스 분석
@@ -112,7 +112,9 @@ private String bytesToHex(byte[] bytes) {
 #### 용도 : 비밀번호 암호화에 사용
 
 
-### 5. LoginActionController : Session 과 Cookie, 브라우저
+### 5. LoginActionController 
+`Session, 브라우저, Cookie`
+
 **사용자 브라우저가 서버 http://localhost:8088/DemoProject url로 처음 요청을 보내면 톰캣은 이 브라우저를 식별하기 위해서 JSESSONID 값을 생성하고 (JESSIONID, 생성값) 한쌍을 브라우저 쿠키 저장소에 저장하도록 응답을 보낸다.
 그 이후에는 사용자가 브라우저가 동일한 URL로 요청을 보낼때 마다,
 JSESSIONID 값을 함께 서버로 보낸다. 서버는 JSESSIONID 값이 같으면 동일 
