@@ -87,33 +87,35 @@
 - 해싱 함수 
     - sha256 해싱함수 : 암호문 문자열을 256비트 16진수 64개문자로 만든다.
 
-```java
-public String encrypt(String text) throws NoSuchAlgorithmException {
+    ```java
+    public String encrypt(String text) throws NoSuchAlgorithmException {
 
-    // 1.실행 객체 생성
-    MessageDigest md = MessageDigest.getInstance("SHA-256");
-    // 2. 평문을 저장
-    md.update(text.getBytes());
-    // md.digest() 메소드가 해싱함수를 실행한다. 해싱 결과가 buyte[]
+        // 1.실행 객체 생성
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        // 2. 평문을 저장
+        md.update(text.getBytes());
+        // md.digest() 메소드가 해싱함수를 실행한다. 해싱 결과가 buyte[]
 
-    return bytesToHex(md.digest());
-}
-
-private String bytesToHex(byte[] bytes) {
-    StringBuilder builder = new StringBuilder();
-    for (byte b : bytes) {
-        // 바이트 배열에서 1 바이트씩 가져와 16진수 2자리 문자로 변환
-        builder.append(String.format("%02x", b));
+        return bytesToHex(md.digest());
     }
-    return builder.toString();
-}
 
-```
+    private String bytesToHex(byte[] bytes) {
+        StringBuilder builder = new StringBuilder();
+        for (byte b : bytes) {
+            // 바이트 배열에서 1 바이트씩 가져와 16진수 2자리 문자로 변환
+            builder.append(String.format("%02x", b));
+        }
+        return builder.toString();
+    }
+
+    ```
 #### 용도 : 비밀번호 암호화에 사용
-
 
 ### 5. LoginActionController 
 `Session, 브라우저, Cookie`
+
+- 인가(권한이 있는지-글작성, 댓글작성)을 확인
+- 인증 (로그인-사용자확인)
 
 **사용자 브라우저가 서버 http://localhost:8088/DemoProject url로 처음 요청을 보내면 톰캣은 이 브라우저를 식별하기 위해서 JSESSONID 값을 생성하고 (JESSIONID, 생성값) 한쌍을 브라우저 쿠키 저장소에 저장하도록 응답을 보낸다.
 그 이후에는 사용자가 브라우저가 동일한 URL로 요청을 보낼때 마다,
@@ -124,71 +126,149 @@ JSESSIONID 값을 함께 서버로 보낸다. 서버는 JSESSIONID 값이 같으
 
 **브라우저의 Application - Local Strorage와 Session storage는 브라우저에 저장하는 값들이고 session 애트리뷰트는 서버에 저장하는 값들이다.**
 
-```java
-if(user != null) {		
-    //로그인 성공. 로그인 사용자 정보를 서버의 세션 저장소에 저장
-    session.setAttribute("user",user);  //핵심.
-    url =  request.getContextPath();
-}else {	Cookie cookie = new Cookie("incorrect","y");
-cookie.setPath("/");		//쿠키 저장 경로
-response.addCookie(cookie); // 로그인 요청 응답으로 브라우저의 쿠키를 보낸다. (브라우저는 애플리케이션 쿠키 스토리지에 쿠키를 저장한다.)
-```
-**로그인 실패시 login.jsp 스크립트 안에서 Cookie 삭제 만료기한을 줘서 쿠키를 바로 사라지게 한다.**
-```javascript
-// login.jsp
-/* 쿠키에 저장된 로그인 실패 정보 확인. el에 쿠키 객체 cookie가 지원되므로 해당 쿠키 이름 지정하여 사용합니다. */
-console.log('${cookie.incorrect}')
-if('${cookie.incorrect.value}'==='y') {
-    document.getElementById('incorrect').style.display='inline-block';
-    /* 쿠키삭제 */
-    document.cookie = 'incorrect' + "=; expires=Thu, 01 Jan 1970 00:00:10 GMT; path=/;";
-}
-console.log('incorrect','${cookie.incorrect.value}')
-```
+1. 인증 (로그인 사용자 확인)
+    ```java
+    // LoginActionController.java
+    if(user != null) {		
+        // 사용자 확인 성공
+        // 사용자 정보를 서버의 세션 저장소에 저장
+        session.setAttribute("user",user);  //핵심.
+        url =  request.getContextPath();
+    } else {
+        // 사용자 확인 실패
+        Cookie cookie = new Cookie("incorrect","y");
+        cookie.setPath("/");		//쿠키 저장 경로
 
-```javascript
-// list.jsp
-let yn
-// 로그인 후 저장된 세션 애트리뷰트 url
-if('${user.userid}'==''){
-    yn=confirm('글쓰기는 로그인이 필요합니다. 로그인 하시겠습니까?')
-    /* 로그인 후 글쓰기로 돌아가기 */
-    if(yn) {
-        // 로그인 후 글쓰기 화면 다시 요청하기 위해 url을 브라우저에 저장하기
-        sessionStorage.setItem('back', './community/write');
-        // 
-
-        location.href='../login'  
+        response.addCookie(cookie); //로그인 요청 응답으로 브라우저의 쿠키를 보낸다. (브라우저는 애플리케이션 쿠키 스토리지에 쿠키를 저장)
+        url="login"; 
     }
-}else{
-    location.href='write?page=${paging.currentPage }'
-}
-```
-```java
-// LoginViewController.java
-```
-```javascript
-// index.jsp
-```
-```jsp
-<!-- write.jsp 글쓰기 페이지로 이동됨. -->
 
-```
+    ```
+    **로그인 실패시 login.jsp 스크립트 안에서 Cookie 삭제 만료기한을 줘서 쿠키를 바로 사라지게 한다.**
+    ```javascript
+    // login.jsp
+    // 쿠키에 저장된 로그인 실패 정보 확인. el에 쿠키 객체 cookie가 지원되므로 해당 쿠키 이름 지정하여 사용합니다.
+    console.log('${cookie.incorrect}')
+    if('${cookie.incorrect.value}'==='y') {
+        document.getElementById('incorrect').style.display='inline-block';
+        /* 쿠키삭제 */
+        document.cookie = 'incorrect' + "=; expires=Thu, 01 Jan 1970 00:00:10 GMT; path=/;";
+    }
+    console.log('incorrect','${cookie.incorrect.value}')
+    ```
 
+    ```javascript
+    // list.jsp
+    let yn
+    // 로그인 후 저장된 세션 애트리뷰트 url
+    if('${user.userid}'==''){
+        yn=confirm('글쓰기는 로그인이 필요합니다. 로그인 하시겠습니까?')
+        /* 로그인 후 글쓰기로 돌아가기 */
+        if(yn) {
+            // 로그인 후 글쓰기 화면 다시 요청하기 위해 url을 브라우저에 저장하기
+            sessionStorage.setItem('back', './community/write');
+            // 
 
-```jsp
-header.jsp
-<-- sessionScope.user는 user로만 써도됨. 
-sessionScope는 명시적으로 user가 session 애트리뷰트라고 지정해주는 표현이다. -->
-<c:if test="${sessionScope.user == null }">		
-    <li><a href="${pageContext.request.contextPath }/join"><span>회원가입</span></a></li>
-    <li><a href="${pageContext.request.contextPath }/login">로그인</a></li>
-</c:if>	
+            location.href='../login'  
+        }
+    }else{
+        location.href='write?page=${paging.currentPage }'
+    }
+    ```
+    ```java
+    // LoginViewController.java
+    
+    ```
+    ```javascript
+    // index.jsp
 
-```
+    ```
+    ```jsp
+    <!-- write.jsp 글쓰기 페이지로 이동됨. -->
+    header.jsp
+    <-- sessionScope.user는 user로만 써도됨. 
+    sessionScope는 명시적으로 user가 session 애트리뷰트라고 지정해주는 표현이다. -->
+    <c:if test="${sessionScope.user == null }">		
+        <li><a href="${pageContext.request.contextPath }/join"><span>회원가입</span></a></li>
+        <li><a href="${pageContext.request.contextPath }/login">로그인</a></li>
+    </c:if>	
+
+    ```
 
 
 ------
+## 6. 파일 업로드 구현에 필요한 내용
+
+1. 사용자가 파일을 업로드할 기본적인 폼을 만듭니다.
+- 단, 폼을 만들시에 주의해야 할 점이 있다.
+    1. form을 만들 시에 반드시 method="post" 로 지정하기
+    1. from 태그 안에 enctype="multipart/form-data" 라는 코드 넣어주기
+    1. 파일을 업로드 할 수 있게 해주는 `<input type="file">` 을 사용해주기
+
+2. 사용자가 업로드 한 파일이 저장될 폴더를 파일시스템에 만듭니다.
+- "upload"라는 폴더가 파일 시스템에 없다면 새로 만들어줍니다.
+
+3. MultipartRequest 객체 사용을 위해서 먼저 cos.jar 라이브러리를 다운받아야 합니다.
+- 그 다음, MultipartRequest multi = new MultipartRequest(request,path,maxSize,"UTF-8", new DefaultFileRenamePolicy()); 코드를 입력하는데, 이 코드는 폼에서 전달한 파일은 request 형식으로 받고, 업로드 폴더 안에 넣어주는 작업입니다.
+
+- MultipartRequest를 사용할 떄 또한 주의해야할 점이 있는데, MultipartRequest를 사용하게 되면 multi.getParameter();를 통해서 값을 받아와야만 합니다.
+
+
+4. 업로드 파일의 경로를 임의로 지정하고 싶은 경우 톰캣 server.xml 파일을 열어
+`<Context docBase="C:/Class231228/upload" path="/upload" />` 코드를 작성해줍니다.
+그러면 서버로 전달받고 있는 jsp 파일에서 파일시스템 docBase 경로에 있는 파일들을 jsp 파일에서 upload라는 별칭으로 사용할 수 있습니다.
+`<img src="/upload/파일이름" alt="">` 
+
+
+## 7. toss 간편결제 API 사용 메뉴얼 
+0. 토스 개발자센터 회원가입 
+1. JSP 중고도서 아이템 요소 이벤트에서 API 서버로 UI출력 결제요청 호출
+- **결제위젯 함수로 `클라이언트 키`, `커스터머 키` 전달**
+    
+    - `클라이언트 키` : 브라우저에 결제창을 띄우는데 사용합니다. 
+    - `커스터머 키` : 구매자 ID 입니다. 유추가 가능한 사용자 아이디나 전화번호 같은 값은 안전하지 않습니다. 
+- 결제창으로 판매자의 중고도서 정보를 보냅니다.    
+- **간편결제 핵심 메소드**
+    
+    1. `const paymentWidget = PaymentWidget(clientKey, customerKey) `
+     - **브라우저에 간편 결제 UI를 출력**
+
+    2. `paymentWidget.renderPaymentMethods(셀렉터, 금액, 옵션)
+`    
+    - **금액 정보 결제 UI에 랜더링**
+    - `updateAmount(결제 금액)` : 할인, 포인트 차감 등으로 변경된 결제 금액을 UI에 업데이트합니다.
+
+    3. `paymentWidget.requestPayment(payObj)`
+    - **파라미터**
+    - `successUrl`  : **결제가 성공하면 리다이렉트되는 URL입니다. 결제 승인 처리에 필요한 값들이 쿼리 파라미터로 함께 전달됩니다. 반드시 오리진을 포함해야 합니다. 예를 들면 https://www.example.com/success와 같은 형태입니다.**
+        
+        ```javascript
+        const payObj = {
+            orderId: obj.bcode +'_' + orderid,            
+            orderName: obj.title,                 
+            successUrl: window.location.origin + "/DemoProject/pay/success",  
+            failUrl: window.location.origin + "/DemoProject/pay/fail",        
+            customerName: obj.saleuser
+        }
+        
+        console.log(payObj)
+        button.addEventListener("click", function () {
+        paymentWidget.requestPayment(payObj)
+        })
+        ```
+
+    
+    
+2. 결제창을 이용하여 정상적으로 결제가 완료되고,
+성공 시 콜백 URL로 `orderId, paymentKey, amount, paymentType` 4개의 파라미터 값이 넘어옵니다.
+
+- `BookCasePayRequestSuccessController.java`
+
+- `paymentKey` :  결제를 식별하는 키 값입니다. 토스페이먼츠에서 발급합니다. 결제 승인, 결제 조회, 결제 취소 등 운영에 필요한 값입니다.
+ 
+
+
+
 ---
 
 ## 자신의 git Repository로 fork 저장소 push하는 법
@@ -281,6 +361,10 @@ sessionScope는 명시적으로 user가 session 애트리뷰트라고 지정해�
 ![alt text](image-22.png)
 
 **테스트하는 코드는 항상 이 순서를 거쳐서 mybranch에서만 작업합니다.**  
+
 1. mybranch를 main에 합치기
+
+
+
 
 
