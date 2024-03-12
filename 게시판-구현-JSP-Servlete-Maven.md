@@ -1,4 +1,4 @@
-# 게시판 - `JSP` `Servlet` `Maven` `비동기REST-API`
+# 중고도서 북챗 - `JSP` `Servlet` `Maven` `비동기REST-API`
 
 
 ## 1. 데이터 준비
@@ -267,6 +267,66 @@ JSESSIONID 값을 함께 서버로 보낸다. 서버는 JSESSIONID 값이 같으
 - `paymentKey` :  결제를 식별하는 키 값입니다. 토스페이먼츠에서 발급합니다. 결제 승인, 결제 조회, 결제 취소 등 운영에 필요한 값입니다.
  
 
+## 8. Filter 필터 - `SessionFilter` `SetEncodingFilter`
+필터는 WAS가 동적 요청을 처리하는 컨트롤러 서블릿에게
+request 를 전달하기 전에 요청을 검사(확인,로그) 하기 위해 실행되는 서블릿입니다.
+그리고
+response를 브라우저에게 전달하기 전에 응답을 검사(확인,로그)하기 위해
+실행됩니다.
+즉, 사용자 요청과 컨트롤러 사이에 있으며 
+여러 개 필터가 동작할 수 있어서 체인으로 구성된다고 말합니다.
+
+필터는 애노테이션 또는 web.xml에서
+설정하는데 데모프로젝트에서는 web.xml에서 정의했습니다.
+
+
+-  `WAS  request` : 클라이언트의 요청이 올 때 
+
+   
+
+    **1. web.xml**
+
+    ```xml
+    <!-- Filter 2개 적용 -->
+    <!-- 필터 등록 -->
+    <filter>
+        <filter-name>SessionFilter</filter-name>  <!-- name은 식별값  -->
+        <filter-class>org.iclass.filter.SessionFilter</filter-class>  <!-- 필터의 패키지명.클래스명 -->
+    </filter>
+    <filter>
+        <filter-name>SetEncodingFilter</filter-name> 
+        <filter-class>org.iclass.filter.SetEncodingFilter</filter-class>
+    </filter>
+    <!-- 필터 매핑 -->
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>/*</url-pattern>  <!-- 모든 url에 적용 -->
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SetEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    ```
+
+
+    **2. SessionFilter**
+
+    **3. SetEncodingFilter**
+
+    **4. FrontController**
+
+    **5. URL 맵핑된 Controller**
+
+-  `response WAS` : 클라이언트로 응답을 줄 때
+
+    **1. URL 맵핑된 Controller**
+
+
+    **2. FrontController**
+
+    **3. SetEncodingFilter**
+
+    **4. SessionFilter**
 
 
 ---
