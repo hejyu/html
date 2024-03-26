@@ -7,5 +7,53 @@
 </head>
 <body>
     <h4>anchor test2</h4>
+    <script>
+
+        function tossPayInit() {
+
+            const clientKey = 'test_ck_DnyRpQWGrNDzNjejy5n23Kwv1M9E'
+
+            const customerKey = crypto.randomUUID()  
+            const payment_button = document.getElementById("payment-button")
+
+            // ------  결제위젯 초기화 ------ 
+            const paymentWidget = PaymentWidget(clientKey, customerKey)
+
+            // ------  결제 UI 렌더링 ------ 
+            const paymentMethodWidget = paymentWidget.renderPaymentMethods(
+                "#payment-method", 
+                { value: Number(pay_data.price) },
+                { variantKey: "DEFAULT" } 
+            )
+
+            // ------  이용약관 UI 렌더링 ------
+            paymentWidget.renderAgreement(
+                '#agreement',
+                { variantKey: "AGREEMENT" }
+            )
+
+
+            paymentMethodWidget.updateAmount(Number(pay_data.price))
+            const selectedPaymentMethod = paymentMethodWidget.getSelectedPaymentMethod()
+
+            // ------ '결제모달 > 결제하기' 버튼 누르면 결제창 띄우기 ------
+            const pay_obj = {
+                orderId: pay_data.menu_code +'_' + current_time,            
+                orderMenuCode: pay_data.menu_code,                 
+                orderName: pay_data.menu_name,                 
+                orderDetailOptionSeq: pay_data.detail_option_seq,                 
+                orderDetailOptionName: pay_data.detail_option_desc,                 
+                successUrl: window.location.origin + "/ITburger/pay/success",  
+                failUrl: window.location.origin + "/ITburger/pay/fail",        
+                customerName: '${user.user_name}'
+            }
+
+            console.log(pay_obj)
+
+            payment_button.addEventListener("click", function () {
+                paymentWidget.requestPayment(pay_obj)
+            })
+        }
+    </script>
 </body>
 </html>

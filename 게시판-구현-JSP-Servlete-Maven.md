@@ -112,12 +112,13 @@
 #### 용도 : 비밀번호 암호화에 사용
 
 ### 5. LoginActionController 
-`Session, 브라우저, Cookie`
+`HttpSession, 브라우저, Cookie`
 
-- 인가(권한이 있는지-글작성, 댓글작성)을 확인
 - 인증 (로그인-사용자확인)
+- 인가(권한이 있는지-글작성, 댓글작성)을 확인
 
-**사용자 브라우저가 서버 http://localhost:8088/DemoProject url로 처음 요청을 보내면 톰캣은 이 브라우저를 식별하기 위해서 JSESSONID 값을 생성하고 (JESSIONID, 생성값) 한쌍을 브라우저 쿠키 저장소에 저장하도록 응답을 보낸다.
+
+**사용자 브라우저가 서버 http://localhost:8088/ url로 처음 요청을 보내면 톰캣은 이 브라우저를 식별하기 위해서 JSESSONID 값을 생성하고 (JESSIONID, 생성값) 한쌍을 브라우저 쿠키 저장소에 저장하도록 응답을 보낸다.
 그 이후에는 사용자가 브라우저가 동일한 URL로 요청을 보낼때 마다,
 JSESSIONID 값을 함께 서버로 보낸다. 서버는 JSESSIONID 값이 같으면 동일 
 세션이라고 취급을 한다.
@@ -128,7 +129,7 @@ JSESSIONID 값을 함께 서버로 보낸다. 서버는 JSESSIONID 값이 같으
 
 1. 인증 (로그인 사용자 확인)
     ```java
-    // LoginActionController.java
+    // 1.login.jsp -> 2.LoginActionController.java
     if(user != null) {		
         // 사용자 확인 성공
         // 사용자 정보를 서버의 세션 저장소에 저장
@@ -136,7 +137,7 @@ JSESSIONID 값을 함께 서버로 보낸다. 서버는 JSESSIONID 값이 같으
         url =  request.getContextPath();
     } else {
         // 사용자 확인 실패
-        Cookie cookie = new Cookie("incorrect","y");
+        Cookie cookie = new Cookie("login_fail","y");
         cookie.setPath("/");		//쿠키 저장 경로
 
         response.addCookie(cookie); //로그인 요청 응답으로 브라우저의 쿠키를 보낸다. (브라우저는 애플리케이션 쿠키 스토리지에 쿠키를 저장)
@@ -144,17 +145,15 @@ JSESSIONID 값을 함께 서버로 보낸다. 서버는 JSESSIONID 값이 같으
     }
 
     ```
-    **로그인 실패시 login.jsp 스크립트 안에서 Cookie 삭제 만료기한을 줘서 쿠키를 바로 사라지게 한다.**
+    **로그인 실패시 login.jsp 스크립트 안에서 Cookie 삭제 만료기한을 줘서 login_fail 쿠키를 바로 사라지게 한다.**
     ```javascript
     // login.jsp
-    // 쿠키에 저장된 로그인 실패 정보 확인. el에 쿠키 객체 cookie가 지원되므로 해당 쿠키 이름 지정하여 사용합니다.
-    console.log('${cookie.incorrect}')
-    if('${cookie.incorrect.value}'==='y') {
-        document.getElementById('incorrect').style.display='inline-block';
-        /* 쿠키삭제 */
-        document.cookie = 'incorrect' + "=; expires=Thu, 01 Jan 1970 00:00:10 GMT; path=/;";
+    if('${cookie.login_fail.value}'==='y') {
+        document.getElementById('login_fail').style.display='inline-block';
+        
+        document.cookie = 'login_fail' + "=; expires=Thu, 01 Jan 1970 00:00:10 GMT; path=/;"; // 쿠키삭제
     }
-    console.log('incorrect','${cookie.incorrect.value}')
+    console.log('login_fail','${cookie.login_fail.value}')
     ```
 
     ```javascript
@@ -260,9 +259,9 @@ JSESSIONID 값을 함께 서버로 보낸다. 서버는 JSESSIONID 값이 같으
     
     
 2. 결제창을 이용하여 정상적으로 결제가 완료되고,
-성공 시 콜백 URL로 `orderId, paymentKey, amount, paymentType` 4개의 파라미터 값이 넘어옵니다.
+성공 콜백 URL로 Toss에서 쿼리 파라미터 4개 `orderId, paymentKey, amount, paymentType`를 보내줍니다.
 
-- `BookCasePayRequestSuccessController.java`
+- `PayRequestSuccessController.java`
 
 - `paymentKey` :  결제를 식별하는 키 값입니다. 토스페이먼츠에서 발급합니다. 결제 승인, 결제 조회, 결제 취소 등 운영에 필요한 값입니다.
  
